@@ -12,7 +12,8 @@
     <div class="" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link  active" href="../pages/dashboard.html">
+                <a class="nav-link {{ request()->is('dashboard.index*') ? 'active' : '' }}"
+                    href="{{ route('dashboard.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -64,7 +65,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="{{ asset('pages/tables.html') }}">
+                <a class="nav-link {{ request()->is('categories*') ? 'active' : '' }}"
+                    href="{{ route('categories.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
