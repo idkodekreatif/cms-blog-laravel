@@ -1,17 +1,17 @@
-@foreach ($categories as $category)
 <!-- Modal -->
-<div class="modal-dialog">
-    <div class="modal fade" id="categories{{ $category->id }}" tabindex="-1" aria-labelledby="categories"
-        aria-hidden="true">
+@foreach ($categories as $category)
+<div class="modal fade" id="categoriesUpdate{{ $category->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="categoriesUpdateLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="categories">update New Categories</h1>
+                <h1 class="modal-title fs-5" id="categoriesUpdateLabel">Update Categories</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="{{ route('categories.store', ['categories' => $category->id]) }}" method="post">
-                    @method('PUT')
+            <form action="{{ route('categories.update', ['category' => $category->id]) }}" method="post">
+                <div class="modal-body">
                     @csrf
+                    @method('PUT')
                     <div class="mb-1">
                         <label for="Name" class="form-label">Name</label>
 
@@ -25,11 +25,11 @@
                         </div>
                         @enderror
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
             </form>
         </div>
     </div>

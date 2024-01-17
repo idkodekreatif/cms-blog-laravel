@@ -12,7 +12,7 @@
                         <div class="col-6 text-end">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                                data-bs-target="#categoriesCategories">
+                                data-bs-target="#categoriesCreate">
                                 Add new
                             </button>
                         </div>
@@ -62,16 +62,20 @@
                                             }}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        {{-- <button class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#categories{{ $category->id }}">edit</button> --}}
-                                        <a href="javascript:;" class="font-weight-bold text-xs btn btn-warning btn-sm"
-                                            data-toggle="tooltip" data-original-title="Edit user">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="font-weight-bold text-xs btn btn-warning btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#categoriesUpdate{{ $category->id }}">
                                             Update
-                                        </a>
-                                        <a href="javascript:;" class="font-weight-bold text-xs btn btn-danger btn-sm"
-                                            data-toggle="tooltip" data-original-title="update user">
-                                            Delete
-                                        </a>
+                                        </button>
+
+                                        <form action="{{ route('categories.destroy', $category->id) }}" method="post"
+                                            style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="font-weight-bold text-xs btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this category {{ $category->name }}?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -85,8 +89,8 @@
 
     <!-- Include the modal component -->
     <x-categories-create-modal />
-    {{--
-    <x-categories-update-modal /> --}}
+
+    <x-categories-update-modal :categories="$categories" />
 
     @push('scripts')
     @endpush

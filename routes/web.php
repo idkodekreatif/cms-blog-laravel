@@ -26,5 +26,5 @@ Route::resource('dashboard', DashboardController::class)->only([
 ]);;
 
 Route::resource('categories', CategoriesController::class)->only([
-    'index', 'store', 'update', 'delete',
+    'index', 'store', 'update', 'destroy',
 ]);

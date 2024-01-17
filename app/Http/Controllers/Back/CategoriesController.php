@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
@@ -24,15 +25,21 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|min:5',
-        ]);
+        try {
 
-        $data['slug'] = Str::slug($data['name']);
+            $data = $request->validate([
+                'name' => 'required|min:5',
+            ]);
 
-        Categories::create($data);
+            $data['slug'] = Str::slug($data['name']);
 
-        return back()->with('success', 'Successfully created category');
+            Categories::create($data);
+
+            return back()->with('success', 'Successfully created category');
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return back()->with('error', 'An error occurred. Please try again.');
+        }
     }
 
     /**
@@ -48,15 +55,20 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate([
-            'name' => 'required|min:5',
-        ]);
+        try {
+            $data = $request->validate([
+                'name' => 'required|min:5',
+            ]);
 
-        $data['slug'] = Str::slug($data['name']);
+            $data['slug'] = Str::slug($data['name']);
 
-        Categories::find($id)->update($data);
+            Categories::find($id)->update($data);
 
-        return back()->with('success', 'Successfully updated category');
+            return back()->with('success', 'Successfully updated category');
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return back()->with('error', 'An error occurred. Please try again.');
+        }
     }
 
     /**
@@ -64,6 +76,8 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Categories::find($id)->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Categories deleted successfully.');
     }
 }

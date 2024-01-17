@@ -1,10 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="categoriesCategories" tabindex="-1" aria-labelledby="categoriesCategoriesLabel"
-    aria-hidden="true">
+<div class="modal fade" id="categoriesCreate" tabindex="-1" aria-labelledby="categoriesCreateLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="categoriesCategoriesLabel">New Categories</h1>
+                <h1 class="modal-title fs-5" id="categoriesCreateLabel">New Categories</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('categories.store') }}" method="post">
