@@ -4,6 +4,7 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     @endpush
+
     <div class="row">
         <div class="col-6 d-flex align-items-center">
             <h6>Categories table</h6>
@@ -44,9 +45,12 @@
     </div>
 
     @push('scripts')
+    {{-- Datatables --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    {{-- Datatables Ajax --}}
     <script>
         $(document).ready(function() {
            $('#datatable').DataTable({

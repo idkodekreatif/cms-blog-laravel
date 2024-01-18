@@ -84,17 +84,25 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $file = $request->file('img');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/back/img', $fileName);
+            if ($request->hasFile('img')) {
+                $file = $request->file('img');
+                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/back/img', $fileName);
 
-        $data['img'] = $fileName;
-        $data['slug'] = Str::slug($data['title']);
-        Article::create($data);
+                $data['img'] = $fileName;
+            }
 
-        return redirect()->route('articles.index')->with('success', 'Article insert successfully.');
+            $data['slug'] = Str::slug($data['title']);
+            Article::create($data);
+
+            return redirect()->route('articles.index')->with('success', 'Article insert successfully.');
+        } catch (\Exception $e) {
+            // Handle the exception, log it, or return an appropriate response
+            return redirect()->route('articles.index')->with('error', 'Error inserting article.');
+        }
     }
 
     /**
@@ -123,35 +131,57 @@ class ArticleController extends Controller
      */
     public function update(ArticleUpdateRequest $request, string $id)
     {
-        $article = Article::findOrFail($id);
+        try {
+            $article = Article::findOrFail($id);
 
-        $data = $request->validated();
+            $data = $request->validated();
 
-        if ($request->hasFile('img')) {
-            // Unlink the old image file
-            Storage::delete('public/back/img/' . $article->img);
+            if ($request->hasFile('img')) {
+                // Unlink the old image file
+                Storage::delete('public/back/img/' . $article->img);
 
-            $file = $request->file('img');
-            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/back/img', $fileName);
+                $file = $request->file('img');
+                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/back/img', $fileName);
 
-            $data['img'] = $fileName;
+                $data['img'] = $fileName;
+            }
+
+            $data['slug'] = Str::slug($data['title']);
+            $article->update($data);
+
+            return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
+        } catch (\Exception $e) {
+            // Handle the exception, log it, or return an appropriate response
+            return redirect()->route('articles.index')->with('error', 'Error updating article.');
         }
-
-        $data['slug'] = Str::slug($data['title']);
-        $article->update($data);
-
-        return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        Article::find($id)->delete();
+        try {
+            // Find the article
+            $article = Article::findOrFail($id);
 
-        return redirect()->route('articles.index')->with('success', 'Article deleted successfully.');
+            // Delete the associated image
+            if ($article->img) {
+                // Get the image file name
+                $imageName = $article->img;
+
+                // Delete the image file
+                Storage::delete('public/back/img/' . $imageName);
+            }
+
+            // Delete the article
+            $article->delete();
+
+            return redirect()->route('articles.index')->with('success', 'Article deleted successfully.');
+        } catch (\Exception $e) {
+            // Handle other exceptions, log them, or return an appropriate response
+            return redirect()->route('articles.index')->with('error', 'Error deleting article.');
+        }
     }
 }
