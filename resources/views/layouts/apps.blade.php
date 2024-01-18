@@ -39,6 +39,7 @@
         <x-apps-navbar />
         <!-- End Navbar -->
         <div class="container-fluid py-4">
+            @include('sweetalert::alert')
             {{ $slot }}
 
             <x-apps-footer />

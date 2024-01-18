@@ -4,7 +4,6 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     @endpush
-
     <div class="row">
         <div class="col-6 d-flex align-items-center">
             <h6>Categories table</h6>

@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
-
-use function Ramsey\Uuid\v1;
+use Alert;
 
 class ArticleController extends Controller
 {
@@ -56,8 +55,8 @@ class ArticleController extends Controller
                             <form action="' . route('articles.destroy', $article->id) . '" method="post" style="display:inline">
                                 ' . csrf_field() . '
                                 <input type="hidden" name="_method" value="delete">
-                                <button type="submit" class="font-weight-bold text-xs btn btn-danger btn-sm"
-                                    onclick="return confirm(\'Are you sure you want to delete this article?\')">Delete</button>
+                                <button type="submit" class="font-weight-bold text-xs btn btn-outline-danger btn-sm"
+                                    onclick="return confirm(\'Are you sure you want to delete this article?\')"><i class="far fa-trash-alt me-1"></i>Delete</button>
                             </form>
                         </div>
                     ';
@@ -98,10 +97,11 @@ class ArticleController extends Controller
             $data['slug'] = Str::slug($data['title']);
             Article::create($data);
 
-            return redirect()->route('articles.index')->with('success', 'Article insert successfully.');
+            toast('Article insert successfully.', 'success');
+            return redirect()->route('articles.index');
         } catch (\Exception $e) {
-            // Handle the exception, log it, or return an appropriate response
-            return redirect()->route('articles.index')->with('error', 'Error inserting article.');
+            alert()->error('Error', 'Error inserting article.');
+            return redirect()->route('articles.index');
         }
     }
 
@@ -150,10 +150,11 @@ class ArticleController extends Controller
             $data['slug'] = Str::slug($data['title']);
             $article->update($data);
 
-            return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
+            toast('Article updated successfully.', 'success');
+            return redirect()->route('articles.index');
         } catch (\Exception $e) {
-            // Handle the exception, log it, or return an appropriate response
-            return redirect()->route('articles.index')->with('error', 'Error updating article.');
+            alert()->error('Error', 'Error updating article.');
+            return redirect()->route('articles.index');
         }
     }
 

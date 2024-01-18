@@ -63,9 +63,10 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="font-weight-bold text-xs btn btn-warning btn-sm"
+                                        <button type="button" class="font-weight-bold text-xs text-warning btn btn-sm"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#categoriesUpdate{{ $category->id }}">
+                                            data-bs-target="#categoriesUpdate{{ $category->id }}"><i
+                                                class="fas fa-pencil-alt me-1"></i>
                                             Update
                                         </button>
 
@@ -73,8 +74,10 @@
                                             style="display:inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="font-weight-bold text-xs btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this category {{ $category->name }}?')">Delete</button>
+                                            <button type="submit"
+                                                class="font-weight-bold text-xs text-danger btn btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this category {{ $category->name }}?')"><i
+                                                    class="far fa-trash-alt me-1"></i>Delete</button>
                                         </form>
                                     </td>
                                 </tr>

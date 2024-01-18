@@ -35,10 +35,11 @@ class CategoriesController extends Controller
 
             Categories::create($data);
 
-            return back()->with('success', 'Successfully created category');
+            toast('Successfully created category', 'success');
+            return redirect()->back();
         } catch (\Throwable $th) {
-            Log::error($th->getMessage());
-            return back()->with('error', 'An error occurred. Please try again.');
+            alert()->error('Error', 'An error occurred. Please try again.');
+            return redirect()->back();
         }
     }
 
@@ -64,10 +65,11 @@ class CategoriesController extends Controller
 
             Categories::find($id)->update($data);
 
-            return back()->with('success', 'Successfully updated category');
+            toast('Successfully updated category', 'success');
+            return redirect()->back();
         } catch (\Throwable $th) {
-            Log::error($th->getMessage());
-            return back()->with('error', 'An error occurred. Please try again.');
+            alert()->error('Error', 'An error occurred. Please try again.');
+            return redirect()->back();
         }
     }
 
@@ -78,6 +80,7 @@ class CategoriesController extends Controller
     {
         Categories::find($id)->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Categories deleted successfully.');
+        toast('Categories deleted successfully.', 'success');
+        return redirect()->route('categories.index');
     }
 }
