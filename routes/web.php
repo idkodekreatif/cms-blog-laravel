@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoriesController;
 use App\Http\Controllers\Back\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::get('/', function () {
 Route::resource('dashboard', DashboardController::class)->only([
     'index',
 ]);;
+
+Route::resource('articles', ArticleController::class);
 
 Route::resource('categories', CategoriesController::class)->only([
     'index', 'store', 'update', 'destroy',

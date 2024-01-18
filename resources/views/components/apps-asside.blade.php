@@ -12,7 +12,7 @@
     <div class="" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('dashboard.index*') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->is('dashboard.*') ? 'active' : '' }}"
                     href="{{ route('dashboard.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -39,7 +39,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="{{ asset('pages/sign-in.html') }}">
+                <a class="nav-link  {{ request()->is('articles.*') ? 'active' : '' }}"
+                    href="{{ route('articles.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1"
