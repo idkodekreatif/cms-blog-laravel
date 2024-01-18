@@ -39,57 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($articles as $article)
-                <tr>
-                    <td>
-                        <div class="d-flex px-2 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                                <p class="text-xs text-secondary font-weight-bold mb-0">{{
-                                    $loop->iteration }}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ $article->title }}</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <p class="text-xs text-secondary mb-0">{{ $article->categories->name }}</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <p class="text-xs text-secondary mb-0">{{ $article->views }}x</p>
-                    </td>
-                    <td class="align-middle text-center">
-                        @if ($article->status == 0)
-                        <span class="badge badge-sm bg-gradient-secondary">Private</span>
-                        @else
-                        <span class="badge badge-sm bg-gradient-success">Published</span>
-                        @endif
-                    </td>
-                    <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $article->published
-                            }}</span>
-                    </td>
-                    <td class="align-middle text-center">
-                        <button type="button" class="font-weight-bold text-xs btn btn-secondary btn-sm"
-                            data-bs-toggle="modal" data-bs-target="#categoriesUpdate{{ $article->id }}">
-                            Show
-                        </button>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="font-weight-bold text-xs btn btn-warning btn-sm"
-                            data-bs-toggle="modal" data-bs-target="#categoriesUpdate{{ $article->id }}">
-                            Update
-                        </button>
 
-                        <form action="{{ route('categories.destroy', $article->id) }}" method="post"
-                            style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="font-weight-bold text-xs btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure you want to delete this article {{ $article->name }}?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
             </tbody>
         </table>
     </div>
@@ -100,14 +50,42 @@
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-                $('#datatable').DataTable({
-                    "order": [], // You can specify default sorting here if needed
-                    "columnDefs": [{
-                        "targets": 'no-sort', // Add 'no-sort' class to the th where you don't want sorting
-                        "orderable": false,
-                    }]
-                });
+           $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url()->current() }}',
+                columns: [
+                    {
+                        'data': 'id',
+                        'name': 'id',
+                    },
+                    {
+                        'data': 'title',
+                        'name': 'title',
+                    },
+                    {
+                        'data': 'categories_id',
+                        'name': 'categories_id',
+                    },
+                    {
+                        'data': 'views',
+                        'name': 'views',
+                    },
+                    {
+                        'data': 'status',
+                        'name': 'status',
+                    },
+                    {
+                        'data': 'published',
+                        'name': 'published',
+                    },
+                    {
+                        'data': 'button',
+                        'name': 'button',
+                    },
+                ]
             });
+        });
     </script>
     @endpush
 </x-apps-layouts>
