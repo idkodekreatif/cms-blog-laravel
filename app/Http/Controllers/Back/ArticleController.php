@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+
+use function Ramsey\Uuid\v1;
 
 class ArticleController extends Controller
 {
@@ -19,6 +24,7 @@ class ArticleController extends Controller
 
             return DataTables::of($article)
                 // customized column
+                ->addIndexColumn()
                 ->addColumn('title', function ($article) {
                     return '<p class="text-xs font-weight-bold mb-0">' . $article->title . '</p>';
                 })
@@ -64,15 +70,27 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.article.create', [
+            'categories' => Categories::get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $file = $request->file('img');
+        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/back/img', $fileName);
+
+        $data['img'] = $fileName;
+        $data['slug'] = Str::slug($data['title']);
+        Article::create($data);
+
+        return redirect()->route('articles.index')->with('success', 'Article insert successfully.');
     }
 
     /**

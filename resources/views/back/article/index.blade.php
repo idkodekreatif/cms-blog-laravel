@@ -10,10 +10,9 @@
         </div>
         <div class="col-6 text-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                data-bs-target="#categoriesCreate">
+            <a href="{{ route('articles.create') }}" class="btn btn-outline-primary">
                 Add new
-            </button>
+            </a>
         </div>
     </div>
 
@@ -56,8 +55,8 @@
                 ajax: '{{ url()->current() }}',
                 columns: [
                     {
-                        'data': 'id',
-                        'name': 'id',
+                        'data': 'DT_RowIndex',
+                        'name': 'DT_RowIndex',
                     },
                     {
                         'data': 'title',
