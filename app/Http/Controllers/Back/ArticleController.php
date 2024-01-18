@@ -19,13 +19,22 @@ class ArticleController extends Controller
 
             return DataTables::of($article)
                 // customized column
+                ->addColumn('title', function ($article) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $article->title . '</p>';
+                })
                 ->addColumn('categories_id', function ($article) {
-                    return $article->categories->name;
+                    return '<p class="text-xs text-secondary mb-0">' . $article->categories->name . '</p>';
+                })
+                ->addColumn('views', function ($article) {
+                    return '<p class="text-xs text-secondary mb-0">' . $article->views . 'x</p>';
                 })
                 ->addColumn('status', function ($article) {
                     $badgeClass = $article->status == 0 ? 'bg-gradient-secondary' : 'bg-gradient-success';
                     $statusText = $article->status == 0 ? 'Private' : 'Published';
                     return '<span class="badge badge-sm ' . $badgeClass . '">' . $statusText . '</span>';
+                })
+                ->addColumn('published', function ($article) {
+                    return '<p class="text-xs text-secondary mb-0">' . $article->published . 'x</p>';
                 })
                 ->addColumn('button', function ($article) {
                     return '<button type="button" class="font-weight-bold text-xs btn btn-secondary btn-sm"
@@ -42,7 +51,7 @@ class ArticleController extends Controller
                         Delete
                     </button>';
                 })
-                ->rawColumns(['categories_id', 'status', 'button'])
+                ->rawColumns(['title', 'views', 'categories_id', 'status', 'published', 'button'])
                 ->make();
         }
 
