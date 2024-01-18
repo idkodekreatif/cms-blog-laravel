@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 use App\Models\Article;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -40,27 +42,29 @@ class ArticleController extends Controller
                     return '<span class="badge badge-sm ' . $badgeClass . '">' . $statusText . '</span>';
                 })
                 ->addColumn('published', function ($article) {
-                    return '<p class="text-xs text-secondary mb-0">' . $article->published . 'x</p>';
+                    return '<p class="text-xs text-secondary mb-0">' . $article->published . '</p>';
                 })
                 ->addColumn('button', function ($article) {
-                    return '<button type="button" class="font-weight-bold text-xs btn btn-secondary btn-sm"
-                        data-bs-toggle="modal" data-bs-target="#categoriesUpdate' . $article->id . '">
-                        Show
-                    </button>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="font-weight-bold text-xs btn btn-warning btn-sm"
-                        data-bs-toggle="modal" data-bs-target="#categoriesUpdate' . $article->id . '">
-                        Update
-                    </button>
-                     <button type="button" class="font-weight-bold text-xs btn btn-danger btn-sm"
-                        data-bs-toggle="modal" data-bs-target="#categoriesUpdate' . $article->id . '">
-                        Delete
-                    </button>';
+                    return '
+                        <div class="ms-auto">
+                            <a href="' . route('articles.show', $article->id) . '" class="btn btn-outline-secondary text-xs btn-sm">
+                                <i class="fas fa-eye me-1"></i>Show
+                            </a>
+                            <a href="' . route('articles.edit', $article->id) . '" class="btn btn-outline-warning text-xs btn-sm">
+                                <i class="fas fa-pencil-alt me-1"></i>Update
+                            </a>
+                            <form action="' . route('articles.destroy', $article->id) . '" method="post" style="display:inline">
+                                ' . csrf_field() . '
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" class="font-weight-bold text-xs btn btn-danger btn-sm"
+                                    onclick="return confirm(\'Are you sure you want to delete this article?\')">Delete</button>
+                            </form>
+                        </div>
+                    ';
                 })
                 ->rawColumns(['title', 'views', 'categories_id', 'status', 'published', 'button'])
                 ->make();
         }
-
 
         return view('back.article.index');
     }
@@ -98,7 +102,9 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('back.article.show', [
+            'article' => Article::find($id)
+        ]);
     }
 
     /**
@@ -106,22 +112,46 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('back.article.update', [
+            'article'       => Article::find($id),
+            'categories'    => Categories::get()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ArticleUpdateRequest $request, string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $data = $request->validated();
+
+        if ($request->hasFile('img')) {
+            // Unlink the old image file
+            Storage::delete('public/back/img/' . $article->img);
+
+            $file = $request->file('img');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/back/img', $fileName);
+
+            $data['img'] = $fileName;
+        }
+
+        $data['slug'] = Str::slug($data['title']);
+        $article->update($data);
+
+        return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        Article::find($id)->delete();
+
+        return redirect()->route('articles.index')->with('success', 'Article deleted successfully.');
     }
 }
