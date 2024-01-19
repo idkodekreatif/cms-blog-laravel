@@ -56,7 +56,7 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg">
                             <div class="d-flex flex-column h-100">
                                 <p class="mb-1 pt-2 text-bold">Latest Articles</p>
 
@@ -130,7 +130,7 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg mx-auto">
                             <div class="d-flex flex-column h-100">
                                 <p class="mb-1 pt-2 text-bold">Popular Articles</p>
 
@@ -148,7 +148,7 @@
                                                 Category</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Create At</th>
+                                                Views</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
@@ -172,7 +172,7 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">
-                                                    {{ \Carbon\Carbon::parse($pa->created_at)->format('Y-m-d') }}
+                                                    <p class="text-xs text-secondary mb-0">{{ $pa->views }}x</p>
                                                 </span>
                                             </td>
                                             <td class="align-middle">
