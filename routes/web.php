@@ -3,6 +3,8 @@
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoriesController;
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Front\FrontHomeController;
+use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,26 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', [FrontHomeController::class, 'index']);
 
-
-Route::resource('dashboard', DashboardController::class)->only([
-    'index',
-]);;
-
-Route::resource('articles', ArticleController::class);
-
-Route::resource('categories', CategoriesController::class)->only([
-    'index', 'store', 'update', 'destroy',
+Auth::routes([
+    'register' => false
 ]);
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::resource('dashboard', DashboardController::class)->only([
+        'index',
+    ]);;
+
+    Route::resource('articles', ArticleController::class);
+
+    Route::resource('categories', CategoriesController::class)->only([
+        'index', 'store', 'update', 'destroy',
+    ]);
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
