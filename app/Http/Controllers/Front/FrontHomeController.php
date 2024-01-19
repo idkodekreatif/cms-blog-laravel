@@ -26,7 +26,8 @@ class FrontHomeController extends Controller
         return view('front.home.index', [
             'latest_posts' => Article::with('categories')->latest()->first(),
             'old_posts' => $articles,
-            'categories_posts' => Categories::latest()->get()
+            'categories_posts' => Categories::latest()->get(),
+            'keywords' => $keywords
         ]);
     }
 }

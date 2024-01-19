@@ -27,7 +27,7 @@ class ArticleUpdateRequest extends FormRequest
             'description'       => 'required',
             'status'            => 'required',
             'published'         => 'required',
-            'img'               => 'nullable|image|file|mimes:png, gif, jpeg, png|max:2024',
+            'img'               => 'image|mimes:gif,jpeg,jpg,png|max:2024',
         ];
     }
 }

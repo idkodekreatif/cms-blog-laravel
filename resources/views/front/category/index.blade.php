@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | Article">
+<x-apps-front-layouts title="Kode Kreatif | Categories">
     @push('styles')
     @endpush
     <div class="mb-2">
@@ -11,9 +11,9 @@
             </div>
         </form>
     </div>
-    @if ($keywords)
-    <p>Showing article with keywords : <b>{{ $keywords }}</b></p>
-    @endif
+
+    <p>Showing categories with keywords : <b>{{ $categories }}</b></p>
+
     <div class="row">
         <!-- Blog entries-->
         @forelse ($articles as $article )
@@ -41,9 +41,6 @@
         @empty
         <h3>Not Found</h3>
         @endforelse
-
-        {{--
-        <x-widget-front :categories_posts="$categories_posts" /> --}}
     </div>
     @push('scripts')
     @endpush

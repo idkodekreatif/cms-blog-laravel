@@ -20,7 +20,9 @@
         <div class="card-header">Categories</div>
         <div class="card-body">
             @foreach ($categories_posts as $category)
-            <span class="badge text-bg-primary">{{ $category->name }}</span>
+            <a href="{{ url('c/'. $category->slug) }}">
+                <span class="badge text-bg-primary">{{ $category->name }}</span>
+            </a>
             @endforeach
         </div>
     </div>
