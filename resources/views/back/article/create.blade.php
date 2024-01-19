@@ -53,10 +53,20 @@
                                 <textarea class="form-control" name="description" id="description"
                                     rows="3">{{ old('description') }}</textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Image Max: 2Mb</label>
-                                <input type="file" name="img" class="form-control" id="image">
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="image" class="form-label">Image Max: 2Mb</label>
+                                    <input type="file" name="img" class="form-control image" id="image">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="image" class="form-label">Image Preview</label>
+                                    <br>
+                                    <img src="" class="img-thumbnail image-preview" id="image-preview" width="50%"
+                                        alt="" srcset="">
+                                </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-6">
@@ -87,5 +97,34 @@
         </div>
 
         @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+        <script>
+            var options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                clipboard_handleImage: false,
+            }
+
+            CKEDITOR.replace( 'description', options );
+        </script>
+        <script>
+            $('#image').change(function(){
+            previewImages(this);
+        });
+
+        function previewImages(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+
+                reader.onload = function(e){
+                    $('.image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        </script>
         @endpush
 </x-apps-layouts>

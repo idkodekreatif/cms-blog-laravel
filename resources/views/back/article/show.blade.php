@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
                             <textarea class="form-control" name="description" id="description" rows="3"
-                                @disabled(true)>{{ $article->description }}</textarea>
+                                @disabled(true)>{!! $article->description !!}</textarea>
                         </div>
 
                         <div class="row">
@@ -88,5 +88,18 @@
     </div>
 
     @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                    clipboard_handleImage: false,
+                }
+
+                CKEDITOR.replace( 'description', options );
+    </script>
     @endpush
 </x-apps-layouts>

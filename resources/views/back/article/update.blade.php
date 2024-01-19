@@ -1,4 +1,4 @@
-ij<x-apps-layouts title="Article - Update">
+<x-apps-layouts title="Article - Update">
     @push('styles')
     @endpush
     <!-- End Navbar -->
@@ -60,9 +60,15 @@ ij<x-apps-layouts title="Article - Update">
                                 <textarea class="form-control" name="description" id="description"
                                     rows="3">{{ old('description', $article->description) }}</textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Image Max: 2Mb</label>
-                                <div class="position-relative" style="width: 20rem;">
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="image" class="form-label">Image Max: 2Mb</label>
+                                    <input type="file" name="img" class="form-control" id="image">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="image" class="form-label">Image Preview</label>
+                                    <br>
                                     @if ($article->img)
                                     <a href="{{ asset('storage/back/img/' . $article->img) }}" target="_blank"
                                         rel="noopener noopener">
@@ -73,7 +79,6 @@ ij<x-apps-layouts title="Article - Update">
                                     No image available
                                     @endif
                                 </div>
-                                <input type="file" name="img" class="form-control" id="image">
                             </div>
 
                             <div class="row">
@@ -106,5 +111,18 @@ ij<x-apps-layouts title="Article - Update">
         </div>
 
         @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+        <script>
+            var options = {
+                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                        clipboard_handleImage: false,
+                    }
+
+                    CKEDITOR.replace( 'description', options );
+        </script>
         @endpush
 </x-apps-layouts>
