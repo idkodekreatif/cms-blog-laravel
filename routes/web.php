@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [FrontHomeController::class, 'index']);
+Route::post('/article/search', [FrontHomeController::class, 'index'])->name('article_search');
 
 Auth::routes([
     'register' => false

@@ -10,7 +10,8 @@
                         alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">{{ \Carbon\Carbon::parse($latest_posts->created_at)->format('Y-m-d')
-                        }}</div>
+                        }}
+                        {{ $latest_posts->categories->name }}</div>
                     <h2 class="card-title">{{ $latest_posts->title }}</h2>
                     <p class="card-text">{{ Str::limit(strip_tags($latest_posts->description), 200, '...') }}</a>
                 </div>
@@ -24,9 +25,9 @@
                         <a href="#!"><img class="card-img-top" width="50%" height="25%"
                                 src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="..." /></a>
                         <div class="card-body">
-                            <div class="small text-muted">{{
-                                \Carbon\Carbon::parse($old_post->created_at)->format('Y-m-d')
-                                }}</div>
+                            <div class="small text-muted">
+                                {{ \Carbon\Carbon::parse($old_post->created_at)->format('Y-m-d') }}
+                                {{ $old_post->categories->name }}</div>
                             <h2 class="card-title h4">{{ $old_post->title }}</h2>
                             <p class="card-text">{{ Str::limit(strip_tags($old_post->description), 150, '...') }}
                             </p>
@@ -39,16 +40,9 @@
             <!-- Pagination-->
             <nav aria-label="Pagination">
                 <hr class="my-0" />
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
-                            aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
+                <div class="mt-2">
+                    {{ $old_posts->links() }}
+                </div>
             </nav>
         </div>
         <!-- Side widgets-->
@@ -57,11 +51,15 @@
             <div class="card mb-4">
                 <div class="card-header">Search</div>
                 <div class="card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter search term..."
-                            aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
+                    <form action="{{ route('article_search') }}" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="keywords"
+                                placeholder="Enter search article..." aria-label="Enter search article..."
+                                aria-describedby="button-search" />
+                            <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- Categories widget-->

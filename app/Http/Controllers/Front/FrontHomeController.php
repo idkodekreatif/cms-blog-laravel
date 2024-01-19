@@ -11,9 +11,21 @@ class FrontHomeController extends Controller
 {
     public function index()
     {
+        $keywords = request()->keywords;
+
+        if ($keywords) {
+            $articles = Article::with('categories')
+                ->whereStatus(1)
+                ->where('title', 'like', '%' . $keywords . '%')
+                ->latest()
+                ->simplePaginate(6);
+        } else {
+            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(6);
+        }
+
         return view('front.home.index', [
-            'latest_posts' => Article::latest()->first(),
-            'old_posts' => Article::latest()->get(),
+            'latest_posts' => Article::with('categories')->latest()->first(),
+            'old_posts' => $articles,
             'categories_posts' => Categories::latest()->get()
         ]);
     }
