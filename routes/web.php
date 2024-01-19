@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontHomeController::class, 'index']);
 Route::post('/article/search', [FrontHomeController::class, 'index'])->name('article_search');
 Route::get('/p/{slug}', [FrontArticleController::class, 'show']);
+Route::get('/article', [FrontArticleController::class, 'index'])->name('article');
+Route::post('/article', [FrontArticleController::class, 'index'])->name('article');
 
 Auth::routes([
     'register' => false

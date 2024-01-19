@@ -9,6 +9,27 @@ use Illuminate\Http\Request;
 
 class FrontArticleController extends Controller
 {
+    public function index()
+    {
+        $keywords = request()->keywords;
+
+        if ($keywords) {
+            $articles = Article::with('categories')
+                ->whereStatus(1)
+                ->where('title', 'like', '%' . $keywords . '%')
+                ->latest()
+                ->simplePaginate(6);
+        } else {
+            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(6);
+        }
+
+        return view('front.article.index', [
+            'articles' => $articles,
+            'categories_posts' => Categories::latest()->get(),
+            'keywords' => $keywords
+        ]);
+    }
+
     public function show($slug)
     {
         return view('front.article.show', [

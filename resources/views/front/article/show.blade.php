@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif">
+<x-apps-front-layouts title="Kode Kreatif | Slug">
     @push('styles')
     @endpush
     <div class="row">
