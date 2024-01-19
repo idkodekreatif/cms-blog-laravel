@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +14,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('back.index');
+        return view('back.index', [
+            'total_article_count' => Article::count(),
+            'total_categories_count' => Categories::count(),
+            'latest_article' => Article::with('categories')->whereStatus(1)->latest()->take(5)->get(),
+            'popular_article' => Article::with('categories')->whereStatus(1)->orderBy('views', 'desc')->take(5)->get(),
+        ]);
     }
 
     /**
