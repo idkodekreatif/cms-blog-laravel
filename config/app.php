@@ -175,6 +175,7 @@ return [
         //Laravel File Manager
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\SideWidgetProvider::class,
     ])->toArray(),
 
     /*
