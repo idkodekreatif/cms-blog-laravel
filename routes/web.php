@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoriesController;
+use App\Http\Controllers\Back\ConfigController;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Front\FrontArticleController;
 use App\Http\Controllers\Front\FrontCategoriesController;
@@ -41,9 +42,12 @@ Auth::routes([
 Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('dashboard', DashboardController::class)->only([
         'index',
-    ]);;
+    ]);
 
     Route::resource('articles', ArticleController::class);
+    Route::resource('config', ConfigController::class)->only([
+        'index', 'update'
+    ]);
 
     Route::resource('categories', CategoriesController::class)->only([
         'index', 'store', 'update', 'destroy',
