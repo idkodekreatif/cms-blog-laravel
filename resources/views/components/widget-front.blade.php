@@ -1,6 +1,6 @@
 <!-- Side widgets-->
 @props(['categories_posts'])
-<div class="col-lg-4">
+<div class="col-lg-4" data-aos="fade-left">
     <!-- Search widget-->
     <div class="card mb-4">
         <div class="card-header">Search</div>

@@ -3,7 +3,7 @@
     @endpush
     <div class="row">
         <!-- Blog entries-->
-        <div class="col-lg-8">
+        <div class="col-lg-8" data-aos="zoom-in">
             <!-- Featured blog post-->
             <div class="card mb-4">
                 <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top"
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <x-widget-front :categories_posts="$categories_posts" />
+        <x-widget-front />
     </div>
     @push('scripts')
     @endpush

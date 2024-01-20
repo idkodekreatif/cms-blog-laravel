@@ -14,7 +14,7 @@
     @if ($keywords)
     <p>Showing article with keywords : <b>{{ $keywords }}</b></p>
     @endif
-    <div class="row">
+    <div class="row" data-aos="fade-up">
         <!-- Blog entries-->
         @forelse ($articles as $article )
         <div class="col-lg-6">

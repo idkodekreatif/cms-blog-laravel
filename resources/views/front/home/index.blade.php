@@ -1,7 +1,7 @@
 <x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif | blog' }}">
     @push('styles')
     @endpush
-    <div class="row">
+    <div class="row" data-aos="fade-in">
         <!-- Blog entries-->
         <div class="col-lg-8">
             <!-- Featured blog post-->
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <!-- Nested row for non-featured blog posts-->
-            <div class="row">
+            <div class="row" data-aos="fade-up">
                 @foreach ($old_posts as $old_post)
                 <div class="col-lg-6">
                     <!-- Blog post-->
