@@ -10,10 +10,10 @@
                         src="{{ asset('storage/back/img/'. $article->img) }}" alt="{{ $article->title }}" /></a>
                 <div class="card-body">
                     <div class="small text-muted">
-                        {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }} <a
+                        {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }} | <a
                             href="{{ url('c/'. $article->categories->slug) }}">
                             {{ $article->categories->name }}
-                        </a>
+                        </a> | {{ $article->user->name }}
                     </div>
                     <div class="small text-muted">
                         {{ $article->views }} views

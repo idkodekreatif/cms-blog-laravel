@@ -10,7 +10,17 @@ class Article extends Model
 {
     use HasFactory;
     protected $table = 'article';
-    protected $fillable = ['categories_id', 'title', 'slug', 'description', 'img', 'views', 'status', 'published'];
+    protected $fillable = ['user_id', 'categories_id', 'title', 'slug', 'description', 'img', 'views', 'status', 'published'];
+
+    /**
+     * Get the User that owns the Article
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function User(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the categories that owns the Article

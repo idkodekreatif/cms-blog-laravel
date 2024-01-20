@@ -1,4 +1,4 @@
-<x-apps-layouts title="Article - Update">
+<x-apps-layouts title="{{ isset($article->title) ? 'Kode Kreatif | ' . $article->title : 'Kode Kreatif | show' }}">
     @push('styles')
     @endpush
     <!-- End Navbar -->

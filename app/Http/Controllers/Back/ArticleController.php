@@ -94,6 +94,7 @@ class ArticleController extends Controller
                 $data['img'] = $fileName;
             }
 
+            $data['user_id'] = Auth()->user()->id;
             $data['slug'] = Str::slug($data['title']);
             Article::create($data);
 
@@ -111,7 +112,7 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         return view('back.article.show', [
-            'article' => Article::find($id)
+            'article' => Article::with('user', 'categories')->find($id)
         ]);
     }
 

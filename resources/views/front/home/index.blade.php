@@ -10,11 +10,9 @@
                         src="{{ asset('storage/back/img/'. $latest_posts->img) }}" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">{{ \Carbon\Carbon::parse($latest_posts->created_at)->format('Y-m-d')
-                        }}</div>
-                    <div class="small text-muted">
-                        <a href="{{ url('c/'. $latest_posts->categories->slug) }}">
+                        }} | <a href="{{ url('c/'. $latest_posts->categories->slug) }}">
                             {{ $latest_posts->categories->name }}
-                        </a>
+                        </a> | {{ $latest_posts->user->name }}
                     </div>
                     <h2 class="card-title">{{ $latest_posts->title }}</h2>
                     <p class="card-text">{!! Str::limit(strip_tags($latest_posts->description), 200, '...') !!}</a>
@@ -31,12 +29,10 @@
                                 src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted">
-                                {{ \Carbon\Carbon::parse($old_post->created_at)->format('Y-m-d') }}
-                            </div>
-                            <div class="small text-muted">
-                                <a href="{{ url('c/'. $old_post->categories->slug) }}">
+                                {{ \Carbon\Carbon::parse($old_post->created_at)->format('Y-m-d') }} | <a
+                                    href="{{ url('c/'. $old_post->categories->slug) }}">
                                     {{ $old_post->categories->name }}
-                                </a>
+                                </a> | {{ $old_post->user->name }}
                             </div>
                             <h2 class="card-title h4">{{ $old_post->title }}</h2>
                             <p class="card-text">{!! Str::limit(strip_tags($old_post->description), 150, '...') !!}
@@ -56,7 +52,7 @@
             </nav>
         </div>
 
-        <x-widget-front :categories_posts="$categories_posts" />
+        <x-widget-front />
     </div>
     @push('scripts')
     @endpush
