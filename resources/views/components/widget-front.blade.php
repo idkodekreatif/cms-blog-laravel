@@ -26,6 +26,19 @@
             @endforeach
         </div>
     </div>
+    <!-- Populer widget-->
+    <div class="card mb-4">
+        <div class="card-header">Popular Post</div>
+        <div class="card-body">
+            <ul>
+                @foreach ($popular_article as $article)
+                <li>
+                    <a href="{{ url('p/'. $article->slug) }}">{{ $article->title }}</a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
     <!-- Side widget-->
     <div class="card mb-4">
         <div class="card-header">Side Widget</div>
