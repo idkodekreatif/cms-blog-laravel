@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Categories;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 
 class SideWidgetProvider extends ServiceProvider
 {
@@ -23,7 +24,11 @@ class SideWidgetProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('components.widget-front', function ($view) {
-            $categories = Categories::latest()->get();
+            $categories = Categories::whereHas('articles', function (Builder $query) {
+                $query->where('status', 1);
+            })->withCount(['articles' => function ($query) {
+                $query->where('status', 1);
+            }])->latest()->get();
 
             $view->with('categories_posts', $categories);
         });

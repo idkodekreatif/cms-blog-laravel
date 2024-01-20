@@ -21,7 +21,7 @@
         <div class="card-body">
             @foreach ($categories_posts as $category)
             <a href="{{ url('c/'. $category->slug) }}">
-                <span class="badge text-bg-primary">{{ $category->name }}</span>
+                <span class="badge text-bg-primary">{{ $category->name }} ({{ $category->articles_count }})</span>
             </a>
             @endforeach
         </div>
