@@ -1,59 +1,93 @@
 <x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif | blog' }}">
     @push('styles')
     @endpush
-    <div class="row" data-aos="fade-in">
-        <!-- Blog entries-->
-        <div class="col-lg-8">
-            <!-- Featured blog post-->
-            <div class="card mb-4">
-                <a href="{{ url('p/'.$latest_posts->slug) }}"><img class="card-img-top"
-                        src="{{ asset('storage/back/img/'. $latest_posts->img) }}" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">{{ \Carbon\Carbon::parse($latest_posts->created_at)->format('Y-m-d')
-                        }} | <a href="{{ url('c/'. $latest_posts->categories->slug) }}">
-                            {{ $latest_posts->categories->name }}
-                        </a> | {{ $latest_posts->user->name }}
+
+    @if (!isset($keywords))
+    <!-- Start Popular Product -->
+    <div class="popular-product">
+        <div class="container">
+            <div class="row">
+
+                <!-- Start Column 1 (Kode Kreatif) -->
+                <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                    <h2 class="mb-4 section-title">Kode Kreatif.</h2>
+                    <p class="mb-4">Kode kreatif menyatukan logika dan seni, menghadirkan solusi pemrograman yang tidak
+                        hanya efisien, tetapi juga menginspirasi dan memperkaya pengalaman pengguna.</p>
+                    <p><a href="shop.html" class="btn">Explore</a></p>
+                </div>
+                <!-- End Column 1 -->
+
+                <!-- Start Column 2 (Product Items) -->
+                <div class="col-md-12 col-lg-9">
+                    <div class="row">
+
+                        <h2 class="section-title">Popular Post</h2>
+
+                        @foreach ($latest_posts as $latest)
+
+                        <div class="col-12 col-md-6 mb-4">
+                            <div class="product-item-sm d-flex">
+                                <div class="thumbnail">
+                                    <img src="{{ asset('storage/back/img/'. $latest->img) }}" alt="Image"
+                                        class="img-fluid">
+                                </div>
+                                <div class="pt-3">
+                                    <h3>{{ $latest->title }}</h3>
+                                    <p>{{ Str::limit(strip_tags($latest->description), 100, '...') }}</p>
+                                    <p><a href="{{ url('p/'.$latest->slug) }}">Read More</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
+
                     </div>
-                    <h2 class="card-title">{{ $latest_posts->title }}</h2>
-                    <p class="card-text">{!! Str::limit(strip_tags($latest_posts->description), 200, '...') !!}</a>
-                        <a class="btn btn-primary" href="{{ url('p/'.$latest_posts->slug) }}">Read more →</a>
+                </div>
+                <!-- End Column 2 -->
+
+            </div>
+        </div>
+    </div>
+    @endif
+    <!-- End Popular Product -->
+
+    <!-- Start Blog Section -->
+    <div class="blog-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h2 class="section-title">Recent Blog</h2>
+                </div>
+                <div class="col-md-6 text-start text-md-end">
+                    <a href="{{ route('article') }}" class="more">View All Posts</a>
                 </div>
             </div>
-            <!-- Nested row for non-featured blog posts-->
-            <div class="row" data-aos="fade-up">
+
+            <div class="row">
                 @foreach ($old_posts as $old_post)
-                <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="{{ url('p/'.$old_post->slug) }}"><img class="card-img-top" width="50%" height="25%"
-                                src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">
-                                {{ \Carbon\Carbon::parse($old_post->created_at)->format('Y-m-d') }} | <a
-                                    href="{{ url('c/'. $old_post->categories->slug) }}">
-                                    {{ $old_post->categories->name }}
-                                </a> | {{ $old_post->user->name }}
-                            </div>
-                            <h2 class="card-title h4">{{ $old_post->title }}</h2>
-                            <p class="card-text">{!! Str::limit(strip_tags($old_post->description), 150, '...') !!}
+                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+                    <div class="post-entry">
+                        <a href="{{ url('p/'.$old_post->slug) }}" class="post-thumbnail"><img
+                                src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="Image"
+                                class="img-fluid"></a>
+                        <div class="post-content-entry">
+                            <h3><a href="{{ url('p/'.$old_post->slug) }}">{{ $old_post->title }}</a></h3>
+                            <p class="card-text">{!! Str::limit(strip_tags($old_post->description), 100, '...') !!}
                             </p>
-                            <a class="btn btn-primary" href="{{ url('p/'.$old_post->slug) }}">Read more →</a>
+                            <div class="meta">
+                                <span>by <a href="#">{{ $old_post->user->name }}</a></span> <span>on <a href="#">{{
+                                        \Carbon\Carbon::parse($old_post->created_at)->format('M d, Y') }}</a></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0" />
-                <div class="mt-2">
-                    {{ $old_posts->links() }}
-                </div>
-            </nav>
         </div>
-
-        <x-widget-front />
     </div>
+
+    <x-front-testimonial />
+    <!-- End Blog Section -->
     @push('scripts')
     @endpush
 </x-apps-front-layouts>

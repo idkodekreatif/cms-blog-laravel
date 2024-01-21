@@ -1,49 +1,48 @@
 <x-apps-front-layouts title="Kode Kreatif | Article">
     @push('styles')
     @endpush
-    <div class="mb-2">
-        <form action="{{ route('article') }}" method="POST">
-            @csrf
-            <div class="input-group">
-                <input class="form-control" type="text" name="keywords" placeholder="Enter search article..."
-                    aria-label="Enter search article..." aria-describedby="button-search" />
-                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
-            </div>
-        </form>
-    </div>
-    @if ($keywords)
-    <p>Showing article with keywords : <b>{{ $keywords }}</b></p>
-    @endif
-    <div class="row" data-aos="fade-up">
-        <!-- Blog entries-->
-        @forelse ($articles as $article )
-        <div class="col-lg-6">
-            <!-- Blog post-->
-            <div class="card mb-4">
-                <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top" width="50%" height="25%"
-                        src="{{ asset('storage/back/img/'. $article->img) }}" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">
-                        {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }}
-                    </div>
-                    <div class="small text-muted">
-                        <a href="{{ url('c/'. $article->categories->slug) }}">
-                            {{ $article->categories->name }}
-                        </a>
-                    </div>
-                    <h2 class="card-title h4">{{ $article->title }}</h2>
-                    <p class="card-text">{!! Str::limit(strip_tags($article->description), 150, '...') !!}
-                    </p>
-                    <a class="btn btn-primary" href="{{ url('p/'.$article->slug) }}">Read more →</a>
+    <div class="blog-section">
+
+        <div class="mb-2">
+            <form action="{{ route('article') }}" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input class="form-control" type="text" name="keywords" placeholder="Enter search article..."
+                        aria-label="Enter search article..." aria-describedby="button-search" />
+                    <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
                 </div>
+            </form>
+        </div>
+        @if ($keywords)
+        <p>Showing articles with keywords: <b>{{ $keywords }}</b></p>
+        @endif
+
+        <div class="container">
+            <div class="row">
+                @forelse ($articles as $article )
+                <div class="col-12 col-sm-6 col-md-4 mb-5">
+                    <div class="post-entry">
+                        <a href="{{ url('p/'.$article->slug) }}" class="post-thumbnail"><img
+                                src="{{ asset('storage/back/img/'. $article->img) }}" alt="Image" class="img-fluid"></a>
+                        <div class="post-content-entry">
+                            <h3><a href="{{ url('p/'.$article->slug) }}">{{ $article->title }}</a></h3>
+                            <p class="card-text">{!! Str::limit(strip_tags($article->description), 100, '...') !!}
+                            </p>
+                            <div class="meta">
+                                <span>by <a href="#">{{ $article->user->name }}</a></span> <span>on <a href="#">{{
+                                        \Carbon\Carbon::parse($article->created_at)->format('M d, Y')
+                                        }}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="col-12">
+                    <h3>Not Found</h3>
+                </div>
+                @endforelse
             </div>
         </div>
-        @empty
-        <h3>Not Found</h3>
-        @endforelse
-
-        {{--
-        <x-widget-front :categories_posts="$categories_posts" /> --}}
     </div>
     @push('scripts')
     @endpush

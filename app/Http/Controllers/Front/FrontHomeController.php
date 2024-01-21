@@ -20,11 +20,11 @@ class FrontHomeController extends Controller
                 ->latest()
                 ->simplePaginate(6);
         } else {
-            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(6);
+            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(3);
         }
 
         return view('front.home.index', [
-            'latest_posts' => Article::with('categories', 'user')->latest()->first(),
+            'latest_posts' => Article::with('categories', 'user')->latest()->take(4)->get(),
             'old_posts' => $articles,
             'keywords' => $keywords
         ]);

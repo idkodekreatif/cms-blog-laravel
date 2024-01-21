@@ -1,6 +1,6 @@
 <!-- Side widgets-->
 @props(['categories_posts'])
-<div class="col-lg-4" data-aos="fade-left">
+<div class="col-12 col-md-4 mt-4 mt-md-0" data-aos="fade-left">
     <!-- Search widget-->
     <div class="card mb-4">
         <div class="card-header">Search</div>
@@ -15,17 +15,27 @@
             </form>
         </div>
     </div>
-    <!-- Categories widget-->
-    <div class="card mb-4">
-        <div class="card-header">Categories</div>
-        <div class="card-body">
-            @foreach ($categories_posts as $category)
-            <a href="{{ url('c/'. $category->slug) }}">
-                <span class="badge text-bg-primary">{{ $category->name }} ({{ $category->articles_count }})</span>
-            </a>
-            @endforeach
+    <div class="col-12 col-md-12 mt-4 mt-md-0">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
+                <p>Popular article categories can be selected.</p>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0 custom-badge-row">
+                    @foreach ($categories_posts as $category)
+                    <li>
+                        <span class="badge rounded-pill custom-border">
+                            <a href="{{ url('c/'. $category->slug) }}" class="text-primary">{{ $category->name }} ({{
+                                $category->articles_count }})</a>
+                        </span>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
+
     <!-- Populer widget-->
     <div class="card mb-4">
         <div class="card-header">Popular Post</div>
