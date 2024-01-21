@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="pt-3">
                                     <h3>{{ $latest->title }}</h3>
-                                    <p>{{ Str::limit(strip_tags($latest->description), 100, '...') }}</p>
+                                    <p>{!! Str::limit(strip_tags($latest->description), 100, '...') !!}</p>
                                     <p><a href="{{ url('p/'.$latest->slug) }}">Read More</a></p>
                                 </div>
                             </div>
