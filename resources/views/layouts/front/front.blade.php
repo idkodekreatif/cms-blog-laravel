@@ -34,9 +34,8 @@
     <!-- Hero Section -->
     <x-front-hero />
     <!-- End Hero Section -->
-    <div class="container">
-        {{ $slot }}
-    </div>
+    {{ $slot }}
+
 
 
     <!-- Start Testimonial Slider -->

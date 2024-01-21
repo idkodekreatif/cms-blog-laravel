@@ -37,16 +37,24 @@
     </div>
 
     <!-- Populer widget-->
-    <div class="card mb-4">
-        <div class="card-header">Popular Post</div>
-        <div class="card-body">
-            <ul>
-                @foreach ($popular_article as $article)
-                <li>
-                    <a href="{{ url('p/'. $article->slug) }}">{{ $article->title }}</a>
-                </li>
-                @endforeach
-            </ul>
+
+    <div class="col-12 col-md-12 mt-4 mt-md-0">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Popular Posting</h6>
+                <p>The most popular articles can be seen.</p>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0 ">
+                    @foreach ($popular_article as $article)
+                    <li>
+                        <span class="badge rounded-pill custom-border">
+                            <a href="{{ url('p/'. $article->slug) }}">{{ $article->title }}</a>
+                        </span>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
     <!-- Side widget-->
