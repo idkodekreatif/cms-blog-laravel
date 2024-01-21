@@ -66,7 +66,7 @@
             <div class="row">
                 @foreach ($old_posts as $old_post)
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
+                    <div class="post-entry" style="height: 100%;">
                         <a href="{{ url('p/'.$old_post->slug) }}" class="post-thumbnail"><img
                                 src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="Image"
                                 class="img-fluid"></a>
