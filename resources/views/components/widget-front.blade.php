@@ -1,9 +1,8 @@
 <!-- Side widgets-->
 @props(['categories_posts'])
-<div class="col-12 col-md-4 mt-4 mt-md-0" data-aos="fade-left">
+<div class="col-12 col-md-4 mt-4 mt-md-0 sticky-top" data-aos="fade-left">
     <!-- Search widget-->
     <div class="card mb-4">
-        <div class="card-header">Search</div>
         <div class="card-body">
             <form action="{{ route('article_search') }}" method="POST">
                 @csrf
@@ -20,6 +19,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
                 <p>Popular article categories can be selected.</p>
+                <hr>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mb-0 custom-badge-row">
@@ -49,7 +49,8 @@
                     @foreach ($popular_article as $article)
                     <li>
                         <span class="badge rounded-pill custom-border">
-                            <a href="{{ url('p/'. $article->slug) }}">{{ $article->title }}</a>
+                            <a href="{{ url('p/'. $article->slug) }}">{{ Str::limit(strip_tags($article->title), 35,
+                                '...') }}</a>
                         </span>
                     </li>
                     @endforeach

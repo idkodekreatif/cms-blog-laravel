@@ -1,7 +1,11 @@
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Kode Kreatif<span>.</span></a>
+        {{-- <a class="navbar-brand" href="{{ url('/') }}">Kode Kreatif<span>.</span></a> --}}
+        <div class="logo-container">
+            <a href="{{ url('/') }}"><img class="logo-img" src="{{ asset('assets/img/logo-white.png') }}"
+                    alt="Logo" /></a>
+        </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
             aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">

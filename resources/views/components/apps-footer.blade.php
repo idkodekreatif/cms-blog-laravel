@@ -5,9 +5,8 @@
                 <div class="copyright text-center text-sm text-muted text-lg-start">
                     © <script>
                         document.write(new Date().getFullYear())
-                    </script>,
-                    made with <i class="fa fa-heart"></i> by
-                    <a href="Javascript:void(0)" class="font-weight-bold" target="_blank">Agus Baha</a>
+                    </script> Kode Kreatif&trade;.
+                    All Rights Reserved.
                 </div>
             </div>
             <div class="col-lg-6">

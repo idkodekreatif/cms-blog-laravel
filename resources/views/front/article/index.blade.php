@@ -1,8 +1,8 @@
 <x-apps-front-layouts title="Kode Kreatif | Article">
     @push('styles')
     @endpush
-    <div class="container">
-        <div class="blog-section">
+    <div class="blog-section">
+        <div class="container">
             <div class="mb-5">
                 <form action="{{ route('article') }}" method="POST">
                     @csrf
@@ -44,6 +44,10 @@
                     <h3>Not Found</h3>
                 </div>
                 @endforelse
+            </div>
+
+            <div class="my-4 text-center">
+                {{ $articles->links() }}
             </div>
         </div>
     </div>

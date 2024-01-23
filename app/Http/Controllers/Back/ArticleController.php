@@ -27,7 +27,8 @@ class ArticleController extends Controller
                 // customized column
                 ->addIndexColumn()
                 ->addColumn('title', function ($article) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $article->title . '</p>';
+                    $limitedTitle = Str::limit($article->title, 25, '...');
+                    return '<p class="text-xs font-weight-bold mb-0">' . $limitedTitle . '</p>';
                 })
                 ->addColumn('categories_id', function ($article) {
                     return '<p class="text-xs text-secondary mb-0">' . $article->categories->name . '</p>';

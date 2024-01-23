@@ -1,38 +1,42 @@
 <footer class="footer-section">
     <div class="container relative">
 
-        <div class="sofa-img">
-            <img src="{{ asset('assets/front/images/sofa.png') }}" alt="Image" class="img-fluid">
+        <div class="sofa-img mb-4">
+            <img src="{{ asset('assets/front/images/footer.png') }}" alt="Image" class="img-fluid">
         </div>
 
         <div class="row">
             <div class="col-lg-8">
                 <div class="subscription-form">
-                    <h3 class="d-flex align-items-center"><span class="me-1"><img
-                                src="{{ asset('assets/front/images/envelope-outline.svg') }}" alt="Image"
-                                class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+                    <h3 class="d-flex align-items-center mb-3">
+                        <span class="me-1">
+                            <img src="{{ asset('assets/front/images/envelope-outline.svg') }}" alt="Image"
+                                class="img-fluid">
+                        </span>
+                        <span>Subscribe to Newsletter</span>
+                    </h3>
 
                     <form action="#" class="row g-3">
-                        <div class="col-auto">
+                        <div class="col-12 col-md-auto mb-3">
                             <input type="text" class="form-control" placeholder="Enter your name">
                         </div>
-                        <div class="col-auto">
+                        <div class="col-12 col-md-auto mb-3">
                             <input type="email" class="form-control" placeholder="Enter your email">
                         </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary">
+                        <div class="col-12 col-md-auto mb-3">
+                            <button class="btn btn-primary w-100" type="submit">
                                 <span class="fa fa-paper-plane"></span>
                             </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
 
         <div class="row g-5 mb-5">
             <div class="col-lg-4">
-                <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Kode Kreatif<span>.</span></a>
+                <div class="mb-4 footer-logo-wrap"><a href="{{ url('/') }}" class="footer-logo"><img class="logo-img"
+                            src="{{ asset('assets/img/logo-back.png') }}" alt="Logo" /></a>
                 </div>
                 <p class="mb-4">Kode kreatif menggabungkan kecerdasan teknis dengan keindahan artistik, menghasilkan
                     solusi pemrograman yang tak hanya
@@ -75,8 +79,7 @@
                     <p class="mb-2 text-center text-lg-start">Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script>. All Rights Reserved. &mdash;
-                        Designed <a href="Javascript:void(0)">Kode Kreatif</a>
+                        </script> Kode Kreatif&trade;. All Rights Reserved.
                     </p>
                 </div>
 

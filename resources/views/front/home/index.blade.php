@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif | blog' }}">
+<x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif ' }}">
     @push('styles')
     @endpush
 
@@ -21,18 +21,20 @@
                 <div class="col-md-12 col-lg-9">
                     <div class="row">
 
-                        <h2 class="section-title">Popular Post</h2>
+                        <h2 class="section-title mb-4">Popular Post</h2>
 
                         @foreach ($latest_posts as $latest)
 
                         <div class="col-12 col-md-6 mb-4">
-                            <div class="product-item-sm d-flex">
+                            <div class="product-item-sm">
                                 <div class="thumbnail">
-                                    <img src="{{ asset('storage/back/img/'. $latest->img) }}" alt="Image"
-                                        class="img-fluid">
+                                    <a href="{{ url('p/'.$latest->slug) }}">
+                                        <img src="{{ asset('storage/back/img/'. $latest->img) }}" alt="Image"
+                                            class="img-fluid">
+                                    </a>
                                 </div>
                                 <div class="pt-3">
-                                    <h3>{{ $latest->title }}</h3>
+                                    <h3><a href="{{ url('p/'.$latest->slug) }}">{{ $latest->title }}</a></h3>
                                     <p>{!! Str::limit(strip_tags($latest->description), 100, '...') !!}</p>
                                     <p><a href="{{ url('p/'.$latest->slug) }}">Read More</a></p>
                                 </div>
