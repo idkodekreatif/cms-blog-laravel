@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <!-- Blog entries-->
-            <div class="col-lg-8" data-aos="zoom-in">
+            <div class="col-lg-8 mt-7" data-aos="zoom-in">
                 <!-- Featured blog post-->
                 <div class="card mb-4">
                     <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top"
@@ -25,7 +25,9 @@
                 </div>
             </div>
 
-            <x-widget-front />
+            <div class="col-lg-4 d-none d-md-block">
+                <x-widget-front />
+            </div>
         </div>
     </div>
     @push('scripts')

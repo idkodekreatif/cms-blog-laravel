@@ -1,6 +1,6 @@
 <!-- Side widgets-->
 @props(['categories_posts'])
-<div class="col-12 col-md-4 mt-4 mt-md-0 sticky-top" data-aos="fade-left">
+<div class="sticky-top" data-aos="fade-left">
     <!-- Search widget-->
     <div class="card mb-4">
         <div class="card-body">

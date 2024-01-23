@@ -1381,7 +1381,7 @@ textarea {
 /* Media query for screens smaller than 576px (extra small devices) */
 @media (max-width: 575.98px) {
     .hero {
-        margin-bottom: 0;
+        margin-bottom: 50px;
     }
 
     .card {
@@ -1425,6 +1425,10 @@ textarea {
     }
 
     .footer-section .subscription-form h3 {
-        margin-top: 200px;
+        margin-top: 300px;
+    }
+
+    .footer-section .sofa-img img {
+        margin-top: 100px;
     }
 }
