@@ -1,7 +1,7 @@
 <x-apps-layouts title="Kode Kreatif | Dashboard">
     @push('styles')
     @endpush
-    <div class="row mt-4">
+    <div class="row mt-4 mb-4">
         <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
             <div class="card h-100 p-3">
                 <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100"
