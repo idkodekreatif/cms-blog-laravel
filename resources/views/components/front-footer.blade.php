@@ -55,8 +55,7 @@
                     <div class="col-6 col-sm-6 col-md-3">
                         <ul class="list-unstyled">
                             <li><a href="#">About us</a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ route('article') }}">Blog</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                     </div>

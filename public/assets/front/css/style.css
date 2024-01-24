@@ -1267,7 +1267,7 @@ textarea {
 
 /* Blog Post Entry Styles */
 .post-entry {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
