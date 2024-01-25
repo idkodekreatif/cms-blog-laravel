@@ -49,6 +49,8 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     ]);
 
     Route::resource('articles', ArticleController::class);
+    Route::get('/articles/delete/{id}', [ArticleController::class, 'destroy'])
+        ->name('articles.destroy');
 
     Route::resource('config', ConfigController::class)->only([
         'index', 'update'

@@ -54,7 +54,9 @@
                                 <p class="text-xs text-secondary mb-0">{{ $category->slug }}</p>
                             </td>
                             <td class="align-middle text-center">
-                                <span class="text-secondary text-xs font-weight-bold">{{ $category->created_at }}</span>
+                                <span class="text-secondary text-xs font-weight-bold">{{
+                                    \Carbon\Carbon::parse($category->created_at)->format('M d, Y')
+                                    }}</span>
                             </td>
                             <td class="align-middle text-center">
                                 <a href="#" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal"

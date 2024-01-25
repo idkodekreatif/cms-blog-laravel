@@ -42,23 +42,22 @@ class ArticleController extends Controller
                     return '<span class="badge badge-sm ' . $badgeClass . '">' . $statusText . '</span>';
                 })
                 ->addColumn('published', function ($article) {
-                    return '<p class="text-xs text-secondary mb-0">' . $article->published . '</p>';
+                    $formatted_date = \Carbon\Carbon::parse($article->published)->format('M d, Y');
+                    return '<p class="text-xs text-secondary mb-0">' . $formatted_date . '</p>';
                 })
+
                 ->addColumn('button', function ($article) {
                     return '
                         <div class="ms-auto">
-                            <a href="' . route('articles.show', $article->id) . '" class="btn btn-outline-secondary text-xs btn-sm">
-                                <i class="fas fa-eye me-1"></i>Show
-                            </a>
-                            <a href="' . route('articles.edit', $article->id) . '" class="btn btn-outline-warning text-xs btn-sm">
-                                <i class="fas fa-pencil-alt me-1"></i>Update
-                            </a>
-                            <form action="' . route('articles.destroy', $article->id) . '" method="post" style="display:inline">
-                                ' . csrf_field() . '
-                                <input type="hidden" name="_method" value="delete">
-                                <button type="submit" class="font-weight-bold text-xs btn btn-outline-danger btn-sm"
-                                    onclick="return confirm(\'Are you sure you want to delete this article?\')"><i class="far fa-trash-alt me-1"></i>Delete</button>
-                            </form>
+                                <a href="' . route('articles.show', $article->id) . '" class="text-secondary font-weight-bold text-xs">
+                                    show
+                                </a>
+                                <a href="' . route('articles.edit', $article->id) . '" class="text-warning font-weight-bold text-xs" style="margin-left: 5px;">
+                                    edit
+                                </a>
+                                <a href="' . route('articles.destroy', $article->id) . '" class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
+                                    delete
+                                </a>
                         </div>
                     ';
                 })
