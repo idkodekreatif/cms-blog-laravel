@@ -17,11 +17,12 @@
                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
-                <li><a class="nav-link" href="Javascript:void(0)">About us</a></li>
                 <li class="nav-item {{ request()->is('article') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('article') }}">Artikel</a>
                 </li>
-                <li><a class="nav-link" href="Javascript:void(0)">Contact us</a></li>
+                <li class="nav-item {{ request()->is('contact-as') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('contact_as') }}">Contact us</a>
+                </li>
             </ul>
 
         </div>

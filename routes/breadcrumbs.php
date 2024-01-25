@@ -57,3 +57,7 @@ Breadcrumbs::for('categories.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('config.index', function (BreadcrumbTrail $trail) {
     $trail->push('configuration', route('config.index'));
 });
+
+Breadcrumbs::for('contact-as.index', function (BreadcrumbTrail $trail) {
+    $trail->push('contact-as', route('contact-as.index'));
+});

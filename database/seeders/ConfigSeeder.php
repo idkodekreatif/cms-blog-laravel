@@ -19,6 +19,10 @@ class ConfigSeeder extends Seeder
                 'value' => 'logo.png'
             ],
             [
+                'name' => 'address',
+                'value' => 'Sidoarjo, Jawa Timur'
+            ],
+            [
                 'name' => 'blogname',
                 'value' => 'kode kreatif'
             ],

@@ -4,8 +4,10 @@ use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoriesController;
 use App\Http\Controllers\Back\ConfigController;
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Back\ContactAsController;
 use App\Http\Controllers\Front\FrontArticleController;
 use App\Http\Controllers\Front\FrontCategoriesController;
+use App\Http\Controllers\Front\FrontContactAsController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -33,18 +35,21 @@ Route::get('/article', [FrontArticleController::class, 'index'])->name('article'
 Route::post('/article', [FrontArticleController::class, 'index'])->name('article');
 
 Route::get('/c/{slug}', [FrontCategoriesController::class, 'index'])->name('front.categories');
+Route::get('/contact-as', [FrontContactAsController::class, 'index'])->name('contact_as');
+Route::post('/contact-as', [FrontContactAsController::class, 'store'])->name('contact_as.store');
 
 
 Auth::routes([
     'register' => false
 ]);
 
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::resource('dashboard', DashboardController::class)->only([
         'index',
     ]);
 
     Route::resource('articles', ArticleController::class);
+    
     Route::resource('config', ConfigController::class)->only([
         'index', 'update'
     ]);
@@ -53,10 +58,15 @@ Route::middleware(['web', 'auth'])->group(function () {
         'index', 'store', 'update', 'destroy',
     ]);
 
-    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
+     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
+
+    Route::resource('contact-as', ContactAsController::class)->only([
+        'index', 'show', 'destroy',
+    ]);
 });
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
