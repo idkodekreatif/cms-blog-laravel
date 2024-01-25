@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label for="value" class="form-label">Description</label>
                     <textarea class="form-control" id="value"
-                        cols="30" rows="10">{{ $contacts->description }}</textarea>
+                        cols="30" rows="10" readonly>{{ $contacts->description }}</textarea>
                 </div>
             </div>
         </div>

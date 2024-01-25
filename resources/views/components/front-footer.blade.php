@@ -43,10 +43,10 @@
                     efisien, melainkan juga menginspirasi dan memperkaya pengalaman pengguna.</p>
 
                 <ul class="list-unstyled custom-social">
-                    <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                    <li><a href="https://twitter.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-twitter"></span></a></li>
+                    <li><a href="https://instagram.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-instagram"></span></a></li>
+                    <li><a href="https://linkedin.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                    <li><a href="https://github.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-github"></span></a></li>
                 </ul>
             </div>
 
@@ -54,17 +54,17 @@
                 <div class="row links-wrap justify-content-end">
                     <div class="col-6 col-sm-6 col-md-3">
                         <ul class="list-unstyled">
-                            <li><a href="#">About us</a></li>
+                            <li><a href="Javascript:void(0)">About us</a></li>
                             <li><a href="{{ route('article') }}">Blog</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <li><a href="{{ route('contact_as') }}">Contact us</a></li>
                         </ul>
                     </div>
 
                     <div class="col-6 col-sm-6 col-md-3">
                         <ul class="list-unstyled">
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Services</a></li>
+                            <li><a href="Javascript:void(0)">Support</a></li>
+                            <li><a href="Javascript:void(0)">Privacy Policy</a></li>
+                            <li><a href="Javascript:void(0)">Services</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,8 +84,8 @@
 
                 <div class="col-lg-6 text-center text-lg-end">
                     <ul class="list-unstyled d-inline-flex ms-auto">
-                        <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li class="me-4"><a href="Javascript:void(0)">Terms &amp; Conditions</a></li>
+                        <li><a href="Javascript:void(0)">Privacy Policy</a></li>
                     </ul>
                 </div>
 

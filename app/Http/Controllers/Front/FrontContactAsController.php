@@ -24,9 +24,9 @@ class FrontContactAsController extends Controller
 {
     // dd($request->all());
      $data = $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required',
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
         'description' => 'required|max:255',
     ]);
 
