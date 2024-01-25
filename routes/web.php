@@ -49,7 +49,7 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     ]);
 
     Route::resource('articles', ArticleController::class);
-    
+
     Route::resource('config', ConfigController::class)->only([
         'index', 'update'
     ]);
@@ -58,7 +58,7 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
         'index', 'store', 'update', 'destroy',
     ]);
 
-     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
+    Route::group(['prefix' => 'laravel-filemanager',], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
 

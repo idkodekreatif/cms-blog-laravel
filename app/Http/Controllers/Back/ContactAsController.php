@@ -61,8 +61,17 @@ class ContactAsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $contactAs = ContactAs::find($id);
+    
+    // Debugging
+    dd($contactAs);
+
+    $contactAs->delete();
+
+    toast('Contact deleted successfully.', 'success');
+    return redirect()->back();
+}
+
 }

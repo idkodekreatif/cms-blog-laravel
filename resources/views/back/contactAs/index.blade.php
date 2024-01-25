@@ -45,7 +45,7 @@
                                 data-bs-target="#contactAs{{ $contact->id }}">
                                 show
                             </a>
-                            <a href="#" class="text-danger font-weight-bold text-xs">
+                            <a href="{{route('contact-as.destroy', ['contact_a' =>$contact->id])}}" class="text-danger font-weight-bold text-xs">
                                 delete
                             </a>
                         </td>
