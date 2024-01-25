@@ -14,7 +14,7 @@ class ContactAsController extends Controller
     public function index()
     {
         return view('back.contactAs.index', [
-            'contactAs' => ContactAs::get()
+            'contactAs' => ContactAs::latest()->get()
         ]);
     }
 
@@ -62,16 +62,12 @@ class ContactAsController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    $contactAs = ContactAs::find($id);
-    
-    // Debugging
-    dd($contactAs);
+    {
+        $contactAs = ContactAs::find($id);
 
-    $contactAs->delete();
+        $contactAs->delete();
 
-    toast('Contact deleted successfully.', 'success');
-    return redirect()->back();
-}
-
+        toast('Contact deleted successfully.', 'success');
+        return redirect()->back();
+    }
 }

@@ -57,19 +57,15 @@
                                 <span class="text-secondary text-xs font-weight-bold">{{ $category->created_at }}</span>
                             </td>
                             <td class="align-middle text-center">
-                                <button type="button" class="font-weight-bold text-xs text-warning btn btn-sm"
-                                    data-bs-toggle="modal" data-bs-target="#categoriesUpdate{{ $category->id }}">
-                                    <i class="fas fa-pencil-alt me-1"></i> Update
-                                </button>
-                                <form action="{{ route('categories.destroy', $category->id) }}" method="post"
-                                    style="display:inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="font-weight-bold text-xs text-danger btn btn-sm"
-                                        onclick="return confirm('Are you sure you want to delete this category {{ $category->name }}?')">
-                                        <i class="far fa-trash-alt me-1"></i> Delete
-                                    </button>
-                                </form>
+                                <a href="#" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal"
+                                    data-bs-target="#categoriesUpdate{{ $category->id }}">
+                                    update
+                                </a>
+
+                                <a href="{{route('categories.destroy', ['id' => $category->id])}}"
+                                    class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
+                                    delete
+                                </a>
                             </td>
                         </tr>
                         @endforeach

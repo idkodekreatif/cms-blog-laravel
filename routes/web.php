@@ -57,14 +57,19 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::resource('categories', CategoriesController::class)->only([
         'index', 'store', 'update', 'destroy',
     ]);
+    Route::get('/categories/delete/{id}', [CategoriesController::class, 'destroy'])
+        ->name('categories.destroy');
 
     Route::group(['prefix' => 'laravel-filemanager',], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
 
     Route::resource('contact-as', ContactAsController::class)->only([
-        'index', 'show', 'destroy',
+        'index', 'show',
     ]);
+
+    Route::get('/contact-as/delete/{id}', [ContactAsController::class, 'destroy'])
+        ->name('contact-as.destroy');
 });
 
 

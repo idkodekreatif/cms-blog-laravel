@@ -32,20 +32,23 @@
                             </div>
                         </td>
                         <td>
-                            <p class="text-xs font-weight-bold mb-0">{{ $contact->first_name }} {{ $contact->last_name }}</p>
+                            <p class="text-xs font-weight-bold mb-0">{{ $contact->first_name }}
+                                {{ $contact->last_name }}</p>
                         </td>
                         <td class="align-middle text-center text-sm">
                             <p class="text-xs text-secondary mb-0">{{ $contact->email }}</p>
                         </td>
                         <td class="align-middle text-center text-sm">
-                            <p class="text-xs text-secondary mb-0">{!! Str::limit(strip_tags($contact->description), 100, '...') !!}</p>
+                            <p class="text-xs text-secondary mb-0">{!! Str::limit(strip_tags($contact->description),
+                                100, '...') !!}</p>
                         </td>
                         <td class="align-middle">
                             <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal"
                                 data-bs-target="#contactAs{{ $contact->id }}">
                                 show
                             </a>
-                            <a href="{{route('contact-as.destroy', ['contact_a' =>$contact->id])}}" class="text-danger font-weight-bold text-xs">
+                            <a href="{{ route('contact-as.destroy', ['id' => $contact->id]) }}"
+                                class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
                                 delete
                             </a>
                         </td>
