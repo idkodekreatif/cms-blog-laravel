@@ -43,10 +43,14 @@
                     efisien, melainkan juga menginspirasi dan memperkaya pengalaman pengguna.</p>
 
                 <ul class="list-unstyled custom-social">
-                    <li><a href="https://twitter.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-twitter"></span></a></li>
-                    <li><a href="https://instagram.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-instagram"></span></a></li>
-                    <li><a href="https://linkedin.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-linkedin"></span></a></li>
-                    <li><a href="https://github.com/idkodekreatif" target="_blank"><span class="fa fa-brands fa-github"></span></a></li>
+                    <li><a href="https://twitter.com/idkodekreatif" target="_blank"><span
+                                class="fa fa-brands fa-twitter"></span></a></li>
+                    <li><a href="https://instagram.com/idkodekreatif" target="_blank"><span
+                                class="fa fa-brands fa-instagram"></span></a></li>
+                    <li><a href="https://linkedin.com/idkodekreatif" target="_blank"><span
+                                class="fa fa-brands fa-linkedin"></span></a></li>
+                    <li><a href="https://github.com/idkodekreatif" target="_blank"><span
+                                class="fa fa-brands fa-github"></span></a></li>
                 </ul>
             </div>
 
