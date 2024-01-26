@@ -14,7 +14,7 @@
   "public": true,
   "builds": [
     {
-      "src": "resources/**",
+      "src": "public/**",
       "use": "@vercel/static-build",
       "config": { "distDir": "public" }
     }
