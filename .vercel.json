@@ -1,27 +1,26 @@
 {
-  "version": 2,
-  "framework": {
-    "name": "laravel",
-    "version": "10.41.0"
-  },
-  "functions": {
-    "api/index.php": { "runtime": "vercel-php@0.6.0" }
-  },
-  "routes": [
-    { "src": "/build/(.*)", "dest": "/public/build/$1" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
-  ],
-  "public": true,
-  "builds": [
-    {
-      "src": "public/**",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "public" }
-    }
-  ],
-  "outputDirectory": "public",
-  "env": {
-     "APP_ENV": "production",
+    "version": 2,
+    "framework": null,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.0"
+        }
+    },
+    "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+    "public": true,
+    "buildCommand": "vite build",
+    "outputDirectory": "public",
+    "env": {
+        "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "https://agusbaha",
         "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
@@ -40,6 +39,5 @@
         "DB_DATABASE": "blogpersonal_morningtoo",
         "DB_USERNAME": "blogpersonal_morningtoo",
         "DB_PASSWORD": "9e31624dc1fc16d317f4d2cc22343369f7d0e7ee"
-  }
+    }
 }
-
