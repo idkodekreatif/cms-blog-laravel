@@ -1,18 +1,11 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "public/**",
-            "use": "@vercel/static-build",
-            "config": {
-                "zeroConfig": true
-            }
-        },
-        {
-            "src": "api/index.php",
-            "use": "@vercel/php"
+    "framework": null,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.0"
         }
-    ],
+    },
     "routes": [
         {
             "src": "/build/(.*)",
@@ -24,10 +17,12 @@
         }
     ],
     "public": true,
+    "buildCommand": "vite build",
+    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://cms-blog-laravel.vercel.app",
+        "APP_URL": "https://cms-blog-laravel.vercel.app/",
         "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
