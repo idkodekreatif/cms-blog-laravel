@@ -2,11 +2,15 @@
     "version": 2,
     "builds": [
         {
-            "src": "public/**",
+            "src": "/public/**",
             "use": "@vercel/static-build",
             "config": {
                 "zeroConfig": true
             }
+        },
+        {
+            "src": "/api/index.php",
+            "use": "@vercel/php"
         }
     ],
     "routes": [
