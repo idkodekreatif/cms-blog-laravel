@@ -32,5 +32,6 @@
         "DB_DATABASE": "blogpersonal_morningtoo",
         "DB_USERNAME": "blogpersonal_morningtoo",
         "DB_PASSWORD": "9e31624dc1fc16d317f4d2cc22343369f7d0e7ee"
-    }
+    },
+    "outputDirectory": "dist"
 }
