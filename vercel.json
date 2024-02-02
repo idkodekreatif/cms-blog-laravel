@@ -8,16 +8,20 @@
     },
     "routes": [
         {
+            "src": "/(css|js)/(.*)",
+            "dest": "/public/$1/$2"
+        },
+        {
             "src": "/build/(.*)",
             "dest": "/public/build/"
         },
         {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
+            "src": "/img/(.*)",
+            "dest": "/public/img/"
         },
         {
-            "src": "/assets/(.*)",
-            "dest": "/public/assets/$1"
+            "src": "/(.*)",
+            "dest": "/api/index.php"
         }
     ],
     "public": true,
@@ -26,7 +30,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://cms-blog-laravel.vercel.app",
+        "APP_URL": "https://agusbaha",
         "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
