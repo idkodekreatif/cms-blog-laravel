@@ -12,6 +12,11 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('dashboard.index'));
 });
 
+// Portofolio
+Breadcrumbs::for('portofolio.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Portofolio', route('portofolio.index'));
+});
+
 // Articles
 Breadcrumbs::for('articles.index', function (BreadcrumbTrail $trail) {
     $trail->push('Articles', route('articles.index'));

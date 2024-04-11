@@ -5,6 +5,7 @@ use App\Http\Controllers\Back\CategoriesController;
 use App\Http\Controllers\Back\ConfigController;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\ContactAsController;
+use App\Http\Controllers\Back\PortofolioController;
 use App\Http\Controllers\Front\FrontArticleController;
 use App\Http\Controllers\Front\FrontCategoriesController;
 use App\Http\Controllers\Front\FrontContactAsController;
@@ -47,6 +48,8 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::resource('dashboard', DashboardController::class)->only([
         'index',
     ]);
+
+    Route::resource('portofolio', PortofolioController::class);
 
     Route::resource('articles', ArticleController::class);
     Route::get('/articles/delete/{id}', [ArticleController::class, 'destroy'])

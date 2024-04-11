@@ -1,4 +1,4 @@
-<x-apps-layouts title="Article">
+<x-apps-layouts title="Portofolio">
     @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
         rel="stylesheet" />
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                    <h6>Articles table</h6>
+                    <h6>Portofolio table</h6>
                 </div>
                 <div class="col-6 text-end">
                     <!-- Button trigger modal -->
