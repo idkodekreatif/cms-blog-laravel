@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PortofolioRequest;
+use App\Models\Categories;
 use App\Models\Portofolio;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PortofolioController extends Controller
 {
@@ -44,13 +47,13 @@ class PortofolioController extends Controller
                 ->addColumn('button', function ($portofolio) {
                     return '
                         <div class="ms-auto">
-                                <a href="' . route('articles.show', $portofolio->id) . '" class="text-secondary font-weight-bold text-xs">
+                                <a href="' . route('portofolio.show', $portofolio->id) . '" class="text-secondary font-weight-bold text-xs">
                                     show
                                 </a>
                                 <a href="' . route('articles.edit', $portofolio->id) . '" class="text-warning font-weight-bold text-xs" style="margin-left: 5px;">
                                     edit
                                 </a>
-                                <a href="' . route('articles.destroy', $portofolio->id) . '" class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
+                                <a href="' . route('portofolio.destroy', $portofolio->id) . '" class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
                                     delete
                                 </a>
                         </div>
@@ -68,15 +71,37 @@ class PortofolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.portofolio.create', [
+            'categories' => Categories::get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PortofolioRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+
+            if ($request->hasFile('img')) {
+                $file = $request->file('img');
+                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/back/img/portofolio', $fileName);
+
+                $data['img'] = $fileName;
+            }
+
+            $data['user_id'] = Auth()->user()->id;
+            $data['slug'] = Str::slug($data['title']);
+            Portofolio::create($data);
+
+            toast('Portofolio insert successfully.', 'success');
+            return redirect()->route('portofolio.index');
+        } catch (\Exception $e) {
+            alert()->error('Error', 'Error inserting portofolio.');
+            return redirect()->route('portofolio.index');
+        }
     }
 
     /**
@@ -84,7 +109,9 @@ class PortofolioController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('back.portofolio.show', [
+            'portofolio' => Portofolio::with('user', 'categories')->find($id)
+        ]);
     }
 
     /**
@@ -108,6 +135,28 @@ class PortofolioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Find the article
+            $portofolio = Portofolio::findOrFail($id);
+
+            // Delete the associated image
+            if ($portofolio->img) {
+                // Get the image file name
+                $imageName = $portofolio->img;
+
+                // Delete the image file
+                Storage::delete('public/back/img/portofolio' . $imageName);
+            }
+
+            // Delete the portofolio
+            $portofolio->delete();
+
+            toast('Portofolio deleted successfully.', 'success');
+            return redirect()->route('portofolio.index');
+        } catch (\Exception $e) {
+            // Handle other exceptions, log them, or return an appropriate response
+            alert()->error('Error', 'Error deleting portofolio.');
+            return redirect()->route('portofolio.index');
+        }
     }
 }

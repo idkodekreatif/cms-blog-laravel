@@ -50,6 +50,8 @@ Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     ]);
 
     Route::resource('portofolio', PortofolioController::class);
+    Route::get('/portofolio/delete/{id}', [PortofolioController::class, 'destroy'])
+        ->name('portofolio.destroy');
 
     Route::resource('articles', ArticleController::class);
     Route::get('/articles/delete/{id}', [ArticleController::class, 'destroy'])

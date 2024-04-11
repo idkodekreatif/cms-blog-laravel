@@ -8,7 +8,8 @@
                 <!-- Featured blog post-->
                 <div class="card mb-4">
                     <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top"
-                            src="{{ asset('storage/back/img/'. $article->img) }}" alt="{{ $article->title }}" /></a>
+                            src="{{ asset('storage/back/img/articles/'. $article->img) }}"
+                            alt="{{ $article->title }}" /></a>
                     <div class="card-body">
                         <div class="small text-muted">
                             {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }} | <a

@@ -1,4 +1,4 @@
-<x-apps-layouts title="{{ isset($article->title) ? 'Kode Kreatif | ' . $article->title : 'Kode Kreatif | show' }}">
+<x-apps-layouts title="Portofolio - Create">
     @push('styles')
     @endpush
     <!-- End Navbar -->
@@ -20,21 +20,17 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Update Article</h6>
+                        <h6>Create Portofolio</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('articles.update', $article->id) }}" method="post"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('portofolio.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
-
                             <div class="row">
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Title</label>
                                         <input type="text" name="title" class="form-control" id="title"
-                                            value="{{ old('title', $article->title) }}" placeholder="Title.."
-                                            autocomplete="title">
+                                            value="{{ old('title') }}" placeholder="Title.." autocomplete="title">
                                     </div>
                                 </div>
 
@@ -43,12 +39,9 @@
                                         <label for="Categories" class="form-label">Categories</label>
                                         <select class="form-select" id="Categories" name="categories_id"
                                             aria-label="Default select categories_id">
+                                            <option value="" hidden>Open this select categories</option>
                                             @foreach ($categories as $category)
-                                            @if ($category->id == $article->categories_id)
-                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                            @else
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -58,37 +51,30 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi</label>
                                 <textarea class="form-control" name="description" id="description"
-                                    rows="3">{{ old('description', $article->description) }}</textarea>
+                                    rows="3">{{ old('description') }}</textarea>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="image" class="form-label">Image Max: 2Mb</label>
-                                    <input type="file" name="img" class="form-control" id="image">
+                                    <input type="file" name="img" class="form-control image" id="image">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="image" class="form-label">Image Preview</label>
                                     <br>
-                                    @if ($article->img)
-                                    <a href="{{ asset('storage/back/img/articles/' . $article->img) }}" target="_blank"
-                                        rel="noopener noopener">
-                                        <img src="{{ asset('storage/back/img/articles/' . $article->img) }}"
-                                            width="100%" alt="{{ $article->img }}">
-                                    </a>
-                                    @else
-                                    No image available
-                                    @endif
+                                    <img src="" class="img-thumbnail image-preview" id="image-preview" width="50%"
+                                        alt="" srcset="">
                                 </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-6">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" name="status" aria-label="Default select status">
-                                        <option value="0" {{ $article->status == 0 ? 'selected' : null }}>Private
-                                        </option>
-                                        <option value="1" {{ $article->status == 1 ? 'selected' : null }}>Published
-                                        </option>
+                                        <option selected>Open this select menu</option>
+                                        <option value="0">Private</option>
+                                        <option value="1">Published</option>
                                     </select>
                                 </div>
 
@@ -96,7 +82,7 @@
                                     <div class="mb-3">
                                         <label for="Published" class="form-label">Published</label>
                                         <input type="date" name="published" class="form-control" id="published"
-                                            value="{{ old('published', $article->published) }}">
+                                            value="{{ old('published') }}">
                                     </div>
                                 </div>
                             </div>
@@ -115,14 +101,30 @@
         <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
         <script>
             var options = {
-                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-                        clipboard_handleImage: false,
-                    }
+                filebrowserImageBrowseUrl: '/admin/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/admin/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/admin/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files&_token=',
+                clipboard_handleImage: false,
+            }
 
-                    CKEDITOR.replace( 'description', options );
+            CKEDITOR.replace( 'description', options );
+        </script>
+        <script>
+            $('#image').change(function(){
+            previewImages(this);
+        });
+
+        function previewImages(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+
+                reader.onload = function(e){
+                    $('.image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
         </script>
         @endpush
 </x-apps-layouts>

@@ -28,7 +28,7 @@
                             <div class="product-item-sm">
                                 <div class="thumbnail">
                                     <a href="{{ url('p/'.$latest->slug) }}">
-                                        <img src="{{ asset('storage/back/img/'. $latest->img) }}" alt="Image"
+                                        <img src="{{ asset('storage/back/img/articles/'. $latest->img) }}" alt="Image"
                                             class="img-fluid">
                                     </a>
                                 </div>
@@ -141,7 +141,7 @@
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                     <div class="post-entry" style="height: 100%;">
                         <a href="{{ url('p/'.$old_post->slug) }}" class="post-thumbnail"><img
-                                src="{{ asset('storage/back/img/'. $old_post->img) }}" alt="Image"
+                                src="{{ asset('storage/back/img/articles/'. $old_post->img) }}" alt="Image"
                                 class="img-fluid"></a>
                         <div class="post-content-entry">
                             <h3><a href="{{ url('p/'.$old_post->slug) }}">{{ $old_post->title }}</a></h3>

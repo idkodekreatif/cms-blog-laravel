@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-6 text-end">
                     <!-- Button trigger modal -->
-                    <a href="{{ route('articles.create') }}" class="btn btn-outline-primary">
+                    <a href="{{ route('portofolio.create') }}" class="btn btn-outline-primary">
                         Add new
                     </a>
                 </div>
