@@ -1,7 +1,6 @@
 <x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif ' }}">
     @push('styles')
     @endpush
-
     @if (!isset($keywords))
     <!-- Start Popular Product -->
     <div class="popular-product">
@@ -52,6 +51,78 @@
     </div>
     @endif
     <!-- End Popular Product -->
+
+
+    <!-- Start Portfolio Section -->
+    <div class="portfolio-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h2 class="section-title">Portfolio</h2>
+                </div>
+                <div class="col-md-6 text-start text-md-end">
+                    <a href="javascript:void(0)" class="more">View All Portfolios</a>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <ul class="filters_menu">
+                    <li class="active" data-filter="*">All</li>
+                    <li data-filter=".burger">Burger</li>
+                    <li data-filter=".pizza">Pizza</li>
+                    <li data-filter=".pasta">Pasta</li>
+                    <li data-filter=".fries">Fries</li>
+                </ul>
+            </div>
+            <div class="row">
+                <!-- Portfolio Item -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="post-entry" style="height: 100%;">
+                        <a href="javascript:void(0)" class="post-thumbnail">
+                            <img src="https://via.placeholder.com/150" alt="Burger Image" class="img-fluid">
+                        </a>
+                        <div class="post-content-entry">
+                            <h3><a href="javascript:void(0)">Delicious Burger</a></h3>
+                            <p class="card-text">A mouth-watering burger with cheese and lettuce.</p>
+                            <div class="meta">
+                                <span>by <a href="#">Chef Baha</a></span> <span>on <a href="#">April 10, 2024</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="post-entry" style="height: 100%;">
+                        <a href="javascript:void(0)" class="post-thumbnail">
+                            <img src="https://via.placeholder.com/150" alt="Pizza Image" class="img-fluid">
+                        </a>
+                        <div class="post-content-entry">
+                            <h3><a href="javascript:void(0)">Classic Pizza</a></h3>
+                            <p class="card-text">Classic Margherita Pizza with fresh tomatoes and basil.</p>
+                            <div class="meta">
+                                <span>by <a href="#">Chef Baha</a></span> <span>on <a href="#">April 9, 2024</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="post-entry" style="height: 100%;">
+                        <a href="javascript:void(0)" class="post-thumbnail">
+                            <img src="https://via.placeholder.com/150" alt="Pasta Image" class="img-fluid">
+                        </a>
+                        <div class="post-content-entry">
+                            <h3><a href="javascript:void(0)">Creamy Pasta</a></h3>
+                            <p class="card-text">Delicious creamy pasta with mushrooms and parmesan cheese.</p>
+                            <div class="meta">
+                                <span>by <a href="#">Chef Baha</a></span> <span>on <a href="#">April 8, 2024</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Portfolio Section -->
 
     <!-- Start Blog Section -->
     <div class="blog-section">
