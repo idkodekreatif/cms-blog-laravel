@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PortofolioRequest;
+use App\Http\Requests\PortofolioUpdateRequest;
 use App\Models\Categories;
 use App\Models\Portofolio;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class PortofolioController extends Controller
                                 <a href="' . route('portofolio.show', $portofolio->id) . '" class="text-secondary font-weight-bold text-xs">
                                     show
                                 </a>
-                                <a href="' . route('articles.edit', $portofolio->id) . '" class="text-warning font-weight-bold text-xs" style="margin-left: 5px;">
+                                <a href="' . route('portofolio.edit', $portofolio->id) . '" class="text-warning font-weight-bold text-xs" style="margin-left: 5px;">
                                     edit
                                 </a>
                                 <a href="' . route('portofolio.destroy', $portofolio->id) . '" class="text-danger font-weight-bold text-xs" style="margin-left: 5px;">
@@ -119,15 +120,42 @@ class PortofolioController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('back.portofolio.update', [
+            'portofolio'    => Portofolio::find($id),
+            'categories'    => Categories::get()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PortofolioUpdateRequest $request, string $id)
     {
-        //
+        try {
+            $portofolio = Portofolio::findOrFail($id);
+
+            $data = $request->validated();
+
+            if ($request->hasFile('img')) {
+                // Unlink the old image file
+                Storage::delete('public/back/img/portofolio/' . $portofolio->img);
+
+                $file = $request->file('img');
+                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/back/img/portofolio/', $fileName);
+
+                $data['img'] = $fileName;
+            }
+
+            $data['slug'] = Str::slug($data['title']);
+            $portofolio->update($data);
+
+            toast('Portofolio updated successfully.', 'success');
+            return redirect()->route('portofolio.index');
+        } catch (\Exception $e) {
+            alert()->error('Error', 'Error updating portofolio.');
+            return redirect()->route('portofolio.index');
+        }
     }
 
     /**

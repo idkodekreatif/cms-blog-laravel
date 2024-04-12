@@ -1,4 +1,5 @@
-<x-apps-layouts title="{{ isset($article->title) ? 'Kode Kreatif | ' . $article->title : 'Kode Kreatif | show' }}">
+<x-apps-layouts
+    title="{{ isset($portofolio->title) ? 'Kode Kreatif | ' . $portofolio->title : 'Kode Kreatif | show' }}">
     @push('styles')
     @endpush
     <!-- End Navbar -->
@@ -20,10 +21,10 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Update Article</h6>
+                        <h6>Update Portofolio</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('articles.update', $article->id) }}" method="post"
+                        <form action="{{ route('portofolio.update', $portofolio->id) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -33,7 +34,7 @@
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Title</label>
                                         <input type="text" name="title" class="form-control" id="title"
-                                            value="{{ old('title', $article->title) }}" placeholder="Title.."
+                                            value="{{ old('title', $portofolio->title) }}" placeholder="Title.."
                                             autocomplete="title">
                                     </div>
                                 </div>
@@ -44,7 +45,7 @@
                                         <select class="form-select" id="Categories" name="categories_id"
                                             aria-label="Default select categories_id">
                                             @foreach ($categories as $category)
-                                            @if ($category->id == $article->categories_id)
+                                            @if ($category->id == $portofolio->categories_id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                             @else
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -58,7 +59,7 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi</label>
                                 <textarea class="form-control" name="description" id="description"
-                                    rows="3">{{ old('description', $article->description) }}</textarea>
+                                    rows="3">{{ old('description', $portofolio->description) }}</textarea>
                             </div>
 
                             <div class="row mb-3">
@@ -69,11 +70,11 @@
                                 <div class="col-md-6">
                                     <label for="image" class="form-label">Image Preview</label>
                                     <br>
-                                    @if ($article->img)
-                                    <a href="{{ asset('storage/back/img/articles/' . $article->img) }}" target="_blank"
-                                        rel="noopener noopener">
-                                        <img src="{{ asset('storage/back/img/articles/' . $article->img) }}"
-                                            width="100%" alt="{{ $article->img }}">
+                                    @if ($portofolio->img)
+                                    <a href="{{ asset('storage/back/img/portofolio/' . $portofolio->img) }}"
+                                        target="_blank" rel="noopener noopener">
+                                        <img src="{{ asset('storage/back/img/portofolio/' . $portofolio->img) }}"
+                                            width="100%" alt="{{ $portofolio->img }}">
                                     </a>
                                     @else
                                     No image available
@@ -85,9 +86,9 @@
                                 <div class="col-6">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" name="status" aria-label="Default select status">
-                                        <option value="0" {{ $article->status == 0 ? 'selected' : null }}>Private
+                                        <option value="0" {{ $portofolio->status == 0 ? 'selected' : null }}>Private
                                         </option>
-                                        <option value="1" {{ $article->status == 1 ? 'selected' : null }}>Published
+                                        <option value="1" {{ $portofolio->status == 1 ? 'selected' : null }}>Published
                                         </option>
                                     </select>
                                 </div>
@@ -96,7 +97,7 @@
                                     <div class="mb-3">
                                         <label for="Published" class="form-label">Published</label>
                                         <input type="date" name="published" class="form-control" id="published"
-                                            value="{{ old('published', $article->published) }}">
+                                            value="{{ old('published', $portofolio->published) }}">
                                     </div>
                                 </div>
                             </div>

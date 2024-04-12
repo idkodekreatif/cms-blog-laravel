@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoriesController;
 use App\Http\Controllers\Back\ConfigController;
@@ -43,6 +44,9 @@ Route::post('/contact-as', [FrontContactAsController::class, 'store'])->name('co
 Auth::routes([
     'register' => false
 ]);
+Route::get('/access-panel', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/access-panel', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::resource('dashboard', DashboardController::class)->only([

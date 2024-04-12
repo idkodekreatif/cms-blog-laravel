@@ -35,6 +35,19 @@ Breadcrumbs::for('portofolio.show', function ($trail) {
     }
 });
 
+Breadcrumbs::for('portofolio.edit', function ($trail) {
+    $portofolioId = app('request')->route()->parameter('article');
+
+    if ($portofolioId) {
+        $article = Article::find($portofolioId);
+
+        if ($article) {
+            $trail->push('Portofolio', route('portofolio.index'));
+            $trail->push('Edit : (' . $article->title . ')', route('portofolio.edit', $portofolioId));
+        }
+    }
+});
+
 // Articles
 Breadcrumbs::for('articles.index', function (BreadcrumbTrail $trail) {
     $trail->push('Articles', route('articles.index'));

@@ -139,11 +139,11 @@ class ArticleController extends Controller
 
             if ($request->hasFile('img')) {
                 // Unlink the old image file
-                Storage::delete('public/back/img/' . $article->img);
+                Storage::delete('public/back/img/articles/' . $article->img);
 
                 $file = $request->file('img');
                 $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/back/img', $fileName);
+                $file->storeAs('public/back/img/articles/', $fileName);
 
                 $data['img'] = $fileName;
             }
