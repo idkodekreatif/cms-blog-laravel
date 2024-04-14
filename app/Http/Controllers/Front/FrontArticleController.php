@@ -19,7 +19,7 @@ class FrontArticleController extends Controller
                 ->latest()
                 ->simplePaginate(6);
         } else {
-            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(6);
+            $articles = Article::with('categories')->whereStatus(1)->latest()->simplePaginate(12);
         }
 
         return view('front.article.index', [
