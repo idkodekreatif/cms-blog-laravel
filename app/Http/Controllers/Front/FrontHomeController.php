@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categories;
+use App\Models\Portofolio;
 use Illuminate\Http\Request;
 
 class FrontHomeController extends Controller
@@ -24,6 +25,7 @@ class FrontHomeController extends Controller
         }
 
         return view('front.home.index', [
+            'latest_portofolios' => Portofolio::with('categories', 'user')->latest()->take(4)->get(),
             'latest_posts' => Article::with('categories', 'user')->latest()->take(4)->get(),
             'old_posts' => $articles,
             'keywords' => $keywords

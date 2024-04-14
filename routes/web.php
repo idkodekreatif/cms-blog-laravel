@@ -31,12 +31,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontHomeController::class, 'index']);
 Route::post('/article/search', [FrontHomeController::class, 'index'])->name('article_search');
-Route::get('/p/{slug}', [FrontArticleController::class, 'show']);
+Route::get('/article/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/article', [FrontArticleController::class, 'index'])->name('article');
 // Search for articles widget
 Route::post('/article', [FrontArticleController::class, 'index'])->name('article');
 
-Route::get('/c/{slug}', [FrontCategoriesController::class, 'index'])->name('front.categories');
+Route::get('/category/{slug}', [FrontCategoriesController::class, 'index'])->name('front.categories');
 Route::get('/contact-as', [FrontContactAsController::class, 'index'])->name('contact_as');
 Route::post('/contact-as', [FrontContactAsController::class, 'store'])->name('contact_as.store');
 
