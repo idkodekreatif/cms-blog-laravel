@@ -20,6 +20,9 @@
                 <li class="nav-item {{ request()->is('article') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('article') }}">Artikel</a>
                 </li>
+                <li class="nav-item {{ request()->is('portofolio') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('portofolio') }}">Portofolio</a>
+                </li>
                 <li class="nav-item {{ request()->is('contact-as') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('contact_as') }}">Contact us</a>
                 </li>

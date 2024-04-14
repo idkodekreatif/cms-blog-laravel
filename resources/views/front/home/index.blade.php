@@ -62,7 +62,7 @@
                     <h2 class="section-title">Portfolio</h2>
                 </div>
                 <div class="col-md-6 text-start text-md-end">
-                    <a href="javascript:void(0)" class="more">View All Portfolios</a>
+                    <a href="{{ route('portofolio') }}" class="more">View All Portfolios</a>
                 </div>
             </div>
             <div class="row">
@@ -70,12 +70,12 @@
                 @foreach ($latest_portofolios as $portofolio)
                 <div class="col-12 col-sm-6 col-md-4 mb-4">
                     <div class="post-entry" style="height: 100%;">
-                        <a href="{{ url('p/'.$portofolio->slug) }}" class="post-thumbnail">
+                        <a href="{{ url('portofolio/'.$portofolio->slug) }}" class="post-thumbnail">
                             <img src="{{ asset('storage/back/img/portofolio/'. $portofolio->img) }}" alt="Burger Image"
                                 class="img-fluid">
                         </a>
                         <div class="post-content-entry">
-                            <h3><a href="{{ url('p/'.$portofolio->slug) }}">{{ $portofolio->title }}</a></h3>
+                            <h3><a href="{{ url('portofolio/'.$portofolio->slug) }}">{{ $portofolio->title }}</a></h3>
                             <p class="card-text">{!! Str::limit(strip_tags($portofolio->description), 100, '...') !!}
                             </p>
                             <div class="meta">

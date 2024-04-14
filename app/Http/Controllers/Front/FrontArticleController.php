@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Portofolio;
 
 class FrontArticleController extends Controller
 {

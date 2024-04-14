@@ -11,6 +11,7 @@ use App\Http\Controllers\Front\FrontArticleController;
 use App\Http\Controllers\Front\FrontCategoriesController;
 use App\Http\Controllers\Front\FrontContactAsController;
 use App\Http\Controllers\Front\FrontHomeController;
+use App\Http\Controllers\Front\FrontPortofolioController;
 use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,13 +31,20 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [FrontHomeController::class, 'index']);
+
+Route::get('/category/{slug}', [FrontCategoriesController::class, 'index'])->name('front.categories');
+
 Route::post('/article/search', [FrontHomeController::class, 'index'])->name('article_search');
 Route::get('/article/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/article', [FrontArticleController::class, 'index'])->name('article');
 // Search for articles widget
 Route::post('/article', [FrontArticleController::class, 'index'])->name('article');
 
-Route::get('/category/{slug}', [FrontCategoriesController::class, 'index'])->name('front.categories');
+
+Route::get('/portofolio', [FrontPortofolioController::class, 'index'])->name('portofolio');
+Route::post('/portofolio', [FrontPortofolioController::class, 'index'])->name('portofolio');
+Route::get('/portofolio/{slug}', [FrontPortofolioController::class, 'show']);
+
 Route::get('/contact-as', [FrontContactAsController::class, 'index'])->name('contact_as');
 Route::post('/contact-as', [FrontContactAsController::class, 'store'])->name('contact_as.store');
 
