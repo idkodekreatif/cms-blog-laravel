@@ -1,11 +1,21 @@
 <x-apps-front-layouts title="Kode Kreatif | {{ $portofolio->title }}">
     @push('styles')
+    <style>
+        .portofolio-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+    </style>
     @endpush
+
     <div class="container">
         <div class="row">
-            <!-- Blog entries-->
+            <!-- Portofolio entries -->
             <div class="col-lg-8 mt-7" data-aos="zoom-in">
-                <!-- Featured blog post-->
+                <!-- Featured portofolio post -->
                 <div class="card mb-4">
                     <a href="{{ url('portofolio/'.$portofolio->slug) }}"><img class="card-img-top"
                             src="{{ asset('storage/back/img/portofolio/'. $portofolio->img) }}"
@@ -21,13 +31,16 @@
                             {{ $portofolio->views }} views
                         </div>
                         <h2 class="card-title">{{ $portofolio->title }}</h2>
-                        <p class="card-text">{!!$portofolio->description !!}</a>
+                        <div class="portofolio-content">
+                            {!! $portofolio->description !!}
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <div class="col-lg-4 d-none d-md-block">
-                <x-widget-front />
+                <x-widget-show-portofolio-front />
             </div>
         </div>
     </div>

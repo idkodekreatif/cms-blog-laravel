@@ -50,6 +50,7 @@
     <script src="{{ asset('assets/front/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/front/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('assets/front/js/custom.js') }}"></script>
+    @stack('scripts')
 </body>
 
 

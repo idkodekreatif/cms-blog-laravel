@@ -43,6 +43,9 @@ Route::post('/article', [FrontArticleController::class, 'index'])->name('article
 
 Route::get('/portofolio', [FrontPortofolioController::class, 'index'])->name('portofolio');
 Route::post('/portofolio', [FrontPortofolioController::class, 'index'])->name('portofolio');
+Route::get('/portofolio/category', [FrontPortofolioController::class, 'getByCategory'])->name('portofolio.category');
+Route::get('/portofolio/all', [FrontPortofolioController::class, 'getAll'])->name('portofolio.all');
+
 Route::get('/portofolio/{slug}', [FrontPortofolioController::class, 'show']);
 
 Route::get('/contact-as', [FrontContactAsController::class, 'index'])->name('contact_as');

@@ -23,7 +23,7 @@
 
                         <h2 class="section-title mb-4">Popular Post</h2>
 
-                        @foreach ($latest_posts as $latest)
+                        @foreach ($popular_posts as $latest)
 
                         <div class="col-12 col-md-6 mb-4">
                             <div class="product-item-sm">

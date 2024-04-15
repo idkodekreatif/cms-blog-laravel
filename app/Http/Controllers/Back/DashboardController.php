@@ -23,6 +23,7 @@ class DashboardController extends Controller
 
             'total_portofolios_count' => Portofolio::count(),
             'latest_portofolios' => Portofolio::with('categories')->whereStatus(1)->latest()->take(5)->get(),
+            'popular_portofolios' => Portofolio::with('categories')->whereStatus(1)->orderBy('views', 'desc')->take(5)->get(),
         ]);
     }
 

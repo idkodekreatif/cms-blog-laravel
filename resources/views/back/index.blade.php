@@ -94,7 +94,7 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-lg-12 mb-lg-0 mb-4">
+        <div class="col-lg-6 mb-lg-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
                     <div class="row">
@@ -145,6 +145,80 @@
                                             </td>
                                             <td class="align-middle">
                                                 <a href="{{ route('portofolio.show', $lp->id) }}"
+                                                    class="text-secondary font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    show
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+
+                                <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
+                                    href="{{ route('portofolio.index') }}">
+                                    Read More
+                                    <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-lg mx-auto">
+                            <div class="d-flex flex-column h-100">
+                                <p class="mb-1 pt-2 text-bold">Popular Articles</p>
+
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                No</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Title</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Category</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Views</th>
+                                            <th class="text-secondary opacity-7"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($popular_portofolios as $pp)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <p class="text-xs text-secondary mb-0">{{ $loop->iteration }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs text-secondary mb-0">{{ $pp->title }}</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-success">{{
+                                                    $pp->categories->name }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    <p class="text-xs text-secondary mb-0">{{ $pp->views }}x</p>
+                                                </span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="{{ route('portofolio.show', $pp->id) }}"
                                                     class="text-secondary font-weight-bold text-xs"
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     show
@@ -286,7 +360,7 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <span class="badge badge-sm bg-gradient-success">{{
-                                                    $la->categories->name }}</span>
+                                                    $pa->categories->name }}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">
