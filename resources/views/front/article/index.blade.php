@@ -29,7 +29,7 @@
             <div class="col-lg-8">
                 <div class="blog-section">
                     @if ($keywords)
-                    <p>Showing articles with keywords: <b>{{ $keywords }}</b></p>
+                    <p class="m-4">Showing articles with keywords: <b>{{ $keywords }}</b></p>
                     @endif
 
                     <div class="row m-3">
@@ -60,7 +60,7 @@
                         @endforelse
                     </div>
 
-                    <div class="my-4 text-center">
+                    <div class="m-4 text-center">
                         {{ $articles->links() }}
                     </div>
                 </div>

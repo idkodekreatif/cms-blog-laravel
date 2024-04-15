@@ -56,7 +56,7 @@
         }
 
         .portofolio-item .card-text {
-            height: 60px;
+            /* height: 60px; */
             overflow: hidden;
         }
 
