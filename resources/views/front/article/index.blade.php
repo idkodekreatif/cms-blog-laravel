@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | Article">
+<x-apps-front-layouts title="Code Creative | Article">
     @push('styles')
     <style>
         .post-entry {

@@ -1,52 +1,88 @@
-<x-apps-front-layouts title="{{ isset($keywords) ? 'Kode Kreatif | ' . $keywords : 'Kode Kreatif ' }}">
+<x-apps-front-layouts title="{{ isset($keywords) ? 'Code Creative | ' . $keywords : 'Code Creative ' }}">
     @push('styles')
+    <style>
+        .client {
+            color: #3b5d50;
+        }
+    </style>
     @endpush
+    <div class="popular-product bg-partners bg-secondary-subtle">
+        <div class="container">
+            <div class="p-3">
+                <div class="text-center p-2 m-3">
+                    <p class=" with-lines client">Client</p>
+                    <h2 class="h4 text-secondary mb-2">Who Have Collaborated</h2>
+                    <p class="text-secondary with-lines">Collaborating for Success</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-2">
+                        <img src="image_url_1" alt="Image partner 1" class="img-fluid">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="image_url_2" alt="Image partner 2" class="img-fluid">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="image_url_3" alt="Image partner 3" class="img-fluid">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="image_url_4" alt="Image partner 4" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if (!isset($keywords))
     <!-- Start Popular Product -->
     <div class="popular-product">
-        <div class="container">
-            <div class="row">
+        <div class="blog-section">
+            <div class="container">
+                <div class="row">
 
-                <!-- Start Column 1 (Kode Kreatif) -->
-                <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                    <h2 class="mb-4 section-title">Kode Kreatif.</h2>
-                    <p class="mb-4">Kode kreatif menyatukan logika dan seni, menghadirkan solusi pemrograman yang tidak
-                        hanya efisien, tetapi juga menginspirasi dan memperkaya pengalaman pengguna.</p>
-                    <p><a href="shop.html" class="btn">Explore</a></p>
-                </div>
-                <!-- End Column 1 -->
+                    <!-- Start Column 1 (Code Creative) -->
+                    <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                        <h2 class="mb-4 section-title">Code Creative.</h2>
+                        <p class="mb-4">Code Creative brings logic and art together, presenting programming
+                            solutions
+                            that
+                            don't
+                            only efficient, but also inspiring and enriching the user experience.</p>
+                        <p><a href="{{ route('article') }}" class="btn">Explore</a></p>
+                    </div>
+                    <!-- End Column 1 -->
 
-                <!-- Start Column 2 (Product Items) -->
-                <div class="col-md-12 col-lg-9">
-                    <div class="row">
+                    <!-- Start Column 2 (Product Items) -->
+                    <div class="col-md-12 col-lg-9">
+                        <div class="row">
 
-                        <h2 class="section-title mb-4">Popular Post</h2>
+                            <h2 class="section-title mb-4">Popular Post</h2>
 
-                        @foreach ($popular_posts as $latest)
+                            @foreach ($popular_posts as $latest)
 
-                        <div class="col-12 col-md-6 mb-4">
-                            <div class="product-item-sm">
-                                <div class="thumbnail">
-                                    <a href="{{ url('article/'.$latest->slug) }}">
-                                        <img src="{{ asset('storage/back/img/articles/'. $latest->img) }}" alt="Image"
-                                            class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="pt-3">
-                                    <h3><a href="{{ url('article/'.$latest->slug) }}">{{ $latest->title }}</a></h3>
-                                    <p>{!! Str::limit(strip_tags($latest->description), 100, '...') !!}</p>
-                                    <p><a href="{{ url('article/'.$latest->slug) }}">Read More</a></p>
+                            <div class="col-12 col-md-6 mb-4">
+                                <div class="product-item-sm">
+                                    <div class="thumbnail">
+                                        <a href="{{ url('article/'.$latest->slug) }}">
+                                            <img src="{{ asset('storage/back/img/articles/'. $latest->img) }}"
+                                                alt="Image" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="pt-3">
+                                        <h3><a href="{{ url('article/'.$latest->slug) }}">{{ $latest->title }}</a>
+                                        </h3>
+                                        <p>{!! Str::limit(strip_tags($latest->description), 100, '...') !!}</p>
+                                        <p><a href="{{ url('article/'.$latest->slug) }}">Read More</a></p>
+                                    </div>
                                 </div>
                             </div>
+
+                            @endforeach
+
                         </div>
-
-                        @endforeach
-
                     </div>
-                </div>
-                <!-- End Column 2 -->
+                    <!-- End Column 2 -->
 
+                </div>
             </div>
         </div>
     </div>
@@ -75,12 +111,15 @@
                                 class="img-fluid">
                         </a>
                         <div class="post-content-entry">
-                            <h3><a href="{{ url('portofolio/'.$portofolio->slug) }}">{{ $portofolio->title }}</a></h3>
-                            <p class="card-text">{!! Str::limit(strip_tags($portofolio->description), 100, '...') !!}
+                            <h3><a href="{{ url('portofolio/'.$portofolio->slug) }}">{{ $portofolio->title }}</a>
+                            </h3>
+                            <p class="card-text">{!! Str::limit(strip_tags($portofolio->description), 100, '...')
+                                !!}
                             </p>
                             <div class="meta">
                                 <span>by <a href="#">{{ $portofolio->user->name }}</a></span> <span>on <a href="#">{{
-                                        \Carbon\Carbon::parse($portofolio->created_at)->format('M d, Y') }}</a></span>
+                                        \Carbon\Carbon::parse($portofolio->created_at)->format('M d, Y')
+                                        }}</a></span>
                             </div>
                         </div>
                     </div>

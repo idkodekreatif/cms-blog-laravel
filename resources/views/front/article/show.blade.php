@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | {{ $article->title }}">
+<x-apps-front-layouts title="Code Creative | {{ $article->title }}">
     @push('styles')
     <style>
         .article-content img {

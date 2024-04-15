@@ -1,4 +1,4 @@
-<x-apps-layouts title="Kode Kreatif | Dashboard">
+<x-apps-layouts title="Code Creative | Dashboard">
     @push('styles')
     @endpush
     <div class="row mt-4 mb-4">

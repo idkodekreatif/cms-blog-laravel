@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | {{ $article->title }}">
+<x-apps-front-layouts title="Code Creative | {{ $article->title }}">
     @push('styles')
     @endpush
     <div class="row">
@@ -6,12 +6,10 @@
         <div class="col-lg-8" data-aos="zoom-in">
             <!-- Featured blog post-->
             <div class="card mb-4">
-                <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top"
-                        src="{{ asset('storage/back/img/'. $article->img) }}" alt="{{ $article->title }}" /></a>
+                <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top" src="{{ asset('storage/back/img/'. $article->img) }}" alt="{{ $article->title }}" /></a>
                 <div class="card-body">
                     <div class="small text-muted">
-                        {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }} | <a
-                            href="{{ url('c/'. $article->categories->slug) }}">
+                        {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }} | <a href="{{ url('c/'. $article->categories->slug) }}">
                             {{ $article->categories->name }}
                         </a> | {{ $article->user->name }}
                     </div>

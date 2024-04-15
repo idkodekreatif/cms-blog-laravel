@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | Contact As">
+<x-apps-front-layouts title="Code Creative | Contact As">
     @push('styles')
     @endpush
     <!-- Start Contact Form -->
@@ -58,7 +58,7 @@
                         </div>
 
                         <form action="{{ route('contact_as.store') }}" method="POST">
-                        @csrf
+                            @csrf
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
@@ -80,7 +80,8 @@
 
                             <div class="form-group mb-5">
                                 <label class="text-black" for="message">Message</label>
-                                <textarea name="description" class="form-control" id="message" cols="30" rows="5"></textarea>
+                                <textarea name="description" class="form-control" id="message" cols="30"
+                                    rows="5"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>

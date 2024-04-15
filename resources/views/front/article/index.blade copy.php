@@ -1,12 +1,11 @@
-<x-apps-front-layouts title="Kode Kreatif | Article">
+<x-apps-front-layouts title="Code Creative | Article">
     @push('styles')
     @endpush
     <div class="mb-2">
         <form action="{{ route('article') }}" method="POST">
             @csrf
             <div class="input-group">
-                <input class="form-control" type="text" name="keywords" placeholder="Enter search article..."
-                    aria-label="Enter search article..." aria-describedby="button-search" />
+                <input class="form-control" type="text" name="keywords" placeholder="Enter search article..." aria-label="Enter search article..." aria-describedby="button-search" />
                 <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
             </div>
         </form>
@@ -20,8 +19,7 @@
         <div class="col-lg-6">
             <!-- Blog post-->
             <div class="card mb-4">
-                <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top" width="50%" height="25%"
-                        src="{{ asset('storage/back/img/'. $article->img) }}" alt="..." /></a>
+                <a href="{{ url('p/'.$article->slug) }}"><img class="card-img-top" width="50%" height="25%" src="{{ asset('storage/back/img/'. $article->img) }}" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">
                         {{ \Carbon\Carbon::parse($article->created_at)->format('Y-m-d') }}

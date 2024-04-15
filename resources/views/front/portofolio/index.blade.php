@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | Portofolios">
+<x-apps-front-layouts title="Code Creative | Portofolios">
     @push('styles')
     <style>
         .tab-button.active {
@@ -91,7 +91,7 @@
             </div>
             <div class="portofolio-container row">
                 @forelse ($portofolios as $portofolio )
-                <div class="portofolio-item col-12 col-sm-6 col-md-4 mb-5">
+                <div class="portofolio-item col-12 col-sm-6 col-md-0 mb-5">
                     <div class="post-entry">
                         <a href="{{ url('portofolio/'.$portofolio->slug) }}" class="post-thumbnail">
                             <img src="{{ asset('storage/back/img/portofolio/'. $portofolio->img) }}" alt="Image"
@@ -164,7 +164,7 @@
             var html = '';
             if (portofolios.length > 0) {
                 portofolios.forEach(function(portofolio) {
-                    html += '<div class="portofolio-item col-12 col-sm-6 col-md-4 mb-5">' +
+                    html += '<div class="portofolio-item col-12 col-sm-6 col-md-0 mb-5">' +
                         '<div class="post-entry">' +
                         '<a href="/portofolio/' + portofolio.slug + '" class="post-thumbnail">' +
                         '<img src="/storage/back/img/portofolio/' + portofolio.img + '" alt="Image" class="img-fluid"></a>' +

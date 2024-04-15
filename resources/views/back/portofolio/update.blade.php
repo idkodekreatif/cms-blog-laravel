@@ -1,5 +1,5 @@
 <x-apps-layouts
-    title="{{ isset($portofolio->title) ? 'Kode Kreatif | ' . $portofolio->title : 'Kode Kreatif | show' }}">
+    title="{{ isset($portofolio->title) ? 'Code Creative | ' . $portofolio->title : 'Code Creative | show' }}">
     @push('styles')
     @endpush
     <!-- End Navbar -->

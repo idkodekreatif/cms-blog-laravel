@@ -1,4 +1,4 @@
-<x-apps-front-layouts title="Kode Kreatif | {{ $portofolio->title }}">
+<x-apps-front-layouts title="Code Creative | {{ $portofolio->title }}">
     @push('styles')
     <style>
         .portofolio-content img {
