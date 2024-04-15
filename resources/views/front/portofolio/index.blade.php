@@ -1,6 +1,18 @@
 <x-apps-front-layouts title="Kode Kreatif | Portofolios">
     @push('styles')
     <style>
+        .tab-button.active {
+            background-color: #3b5d50;
+            /* Warna latar ketika aktif */
+            color: white;
+            /* Warna teks ketika aktif */
+        }
+
+        .category-tabs .tab-button.active {
+            background-color: #3b5d50;
+            color: white;
+        }
+
         .category-tabs {
             text-align: center;
             /* Membuat tombol berada di tengah */
@@ -114,6 +126,9 @@
     <script>
         $(document).ready(function() {
         $('.tab-button').click(function() {
+            $('.tab-button').removeClass('active'); // Hapus kelas 'active' dari semua tombol
+            $(this).addClass('active'); // Tambahkan kelas 'active' hanya pada tombol yang diklik
+
             var categoryId = $(this).data('id');
             if (categoryId === 'all') {
                 displayAllPortofolios();
