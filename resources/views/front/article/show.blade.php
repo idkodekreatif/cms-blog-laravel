@@ -35,7 +35,7 @@
     @endpush
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <!-- Blog entries-->
             <div class="col-lg-8 mt-7" data-aos="zoom-in">
                 <!-- Featured blog post-->

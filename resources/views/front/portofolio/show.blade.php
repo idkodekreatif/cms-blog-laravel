@@ -12,7 +12,7 @@
     @endpush
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <!-- Portofolio entries -->
             <div class="col-lg-8 mt-7" data-aos="zoom-in">
                 <!-- Featured portofolio post -->

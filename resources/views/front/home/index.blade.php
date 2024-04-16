@@ -1,31 +1,52 @@
 <x-apps-front-layouts title="{{ isset($keywords) ? 'Code Creative | ' . $keywords : 'Code Creative ' }}">
     @push('styles')
     <style>
+        .ourclient {
+            background-color: #334155;
+        }
+
         .client {
-            color: #3b5d50;
+            color: #0097a7;
+        }
+
+        .img-fluid-partner {
+            filter: grayscale(100%);
+            /* Make the image full grayscale */
+            transition: filter 0.3s ease;
+            /* Smooth transition for the filter effect */
+        }
+
+        .img-fluid-partner:hover {
+            filter: none;
+            /* Remove filter effect on hover, showing the original color */
         }
     </style>
     @endpush
-    <div class="popular-product bg-partners bg-secondary-subtle">
+
+    <div class="popular-product ourclient bg-partners">
         <div class="container">
             <div class="p-3">
                 <div class="text-center p-2 m-3">
-                    <p class=" with-lines client">Client</p>
-                    <h2 class="h4 text-secondary mb-2">Who Have Collaborated</h2>
-                    <p class="text-secondary with-lines">Collaborating for Success</p>
+                    <p class="client">Client</p>
+                    <h2 class="h4 text-white mb-2">Who Have Collaborated</h2>
+                    <p class="text-secondary">Collaborating for Success</p>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-2">
-                        <img src="image_url_1" alt="Image partner 1" class="img-fluid">
+                        <img src="{{ asset('assets/img/google.png') }}" alt="Image partner 1"
+                            class="img-fluid img-fluid-partner">
                     </div>
                     <div class="col-md-2">
-                        <img src="image_url_2" alt="Image partner 2" class="img-fluid">
+                        <img src="{{ asset('assets/img/traveloka.png') }}" alt="Image partner 1"
+                            class="img-fluid img-fluid-partner">
                     </div>
                     <div class="col-md-2">
-                        <img src="image_url_3" alt="Image partner 3" class="img-fluid">
+                        <img src="{{ asset('assets/img/tokopedia.png') }}" alt="Image partner 2"
+                            class="img-fluid img-fluid-partner">
                     </div>
                     <div class="col-md-2">
-                        <img src="image_url_4" alt="Image partner 4" class="img-fluid">
+                        <img src="{{ asset('assets/img/gojek.png') }}" alt="Image partner 3"
+                            class="img-fluid img-fluid-partner">
                     </div>
                 </div>
             </div>
