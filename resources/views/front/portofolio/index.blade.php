@@ -1,8 +1,14 @@
 <x-apps-front-layouts title="Code Creative | Portofolio">
     @push('styles')
     <style>
-        .post-entry {
+        .portofolio-item {
+            display: flex;
+            flex-direction: column;
             height: 100%;
+        }
+
+        .post-entry {
+            flex: 1;
         }
 
         .post-thumbnail img {
@@ -17,10 +23,6 @@
             font-size: 14px;
             color: #777;
         }
-
-        /* .card-text {
-            height: 60px;
-        } */
 
         .meta {
             margin-top: 10px;
@@ -46,84 +48,55 @@
             text-align: center;
         }
 
-        /* .portofolio-container {
-            display: flex;
-            flex-wrap: wrap;
-        } */
-
-        .portofolio-item {
-            /* flex: 0 0 calc(33.33% - 20px); */
-            margin: 5px;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 8px;
-        }
-
         .portofolio-item .post-content-entry h3 a {
             color: #333;
+        }
+
+        .portofolio-item {
+            border-radius: 8px;
         }
     </style>
     @endpush
 
     <div class="container py-4">
-        <div class="category-tabs">
+        <div class="category-tabs text-center">
             <button class="btn btn-outline-primary btn-sm tab-button" data-id="all">All</button>
             @foreach ($categories as $category)
-            <button class="btn btn-outline-primary btn-sm tab-button" data-id="{{ $category->id }}">{{
-                $category->name
+            <button class="btn btn-outline-primary btn-sm tab-button" data-id="{{ $category->id }}">{{ $category->name
                 }}</button>
             @endforeach
         </div>
 
-        <div class="portofolio-container row">
-            <div class="col-lg-12 col-md-8 col-sm-12">
-                <div class="blog-section">
-                    {{-- @if ($keywords)
-                    <p class="m-4">Showing articles with keywords: <b>{{ $keywords }}</b></p>
-                    @endif --}}
-
-                    <div class="row p-3">
-                        @forelse ($portofolios as $portofolio )
-                        <div class="portofolio-item col-sm-0 col-md-0">
-                            <div class="post-entry">
-                                <a href="{{ url('portofolio/'.$portofolio->slug) }}" class="post-thumbnail">
-                                    <img src="{{ asset('storage/back/img/portofolio/'. $portofolio->img) }}" alt="Image"
-                                        class="img-fluid">
-                                </a>
-                                <div class="post-content-entry">
-                                    <h3><a href="{{ url('portofolio/'.$portofolio->slug) }}">{{ $portofolio->title
-                                            }}</a>
-                                    </h3>
-                                    <p class="card-text">
-                                        {!! Str::limit(strip_tags($portofolio->description), 100, '...') !!}
-                                    </p>
-                                    <div class="meta">
-                                        <span>by <a href="#">{{ $portofolio->user->name }}</a></span>
-                                        <span>on {{ \Carbon\Carbon::parse($portofolio->created_at)->format('M d, Y')
-                                            }}</span>
-                                    </div>
-                                </div>
+        <div class="row g-4">
+            @forelse ($portofolios as $portofolio)
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="portofolio-item bg-white border-radius-xl p-4 m-3">
+                    <div class="post-entry">
+                        <a href="{{ url('portofolio/'.$portofolio->slug) }}" class="post-thumbnail">
+                            <img src="{{ asset('storage/back/img/portofolio/'. $portofolio->img) }}" alt="Image"
+                                class="img-fluid">
+                        </a>
+                        <div class="post-content-entry">
+                            <h3><a href="{{ url('portofolio/'.$portofolio->slug) }}">{{ $portofolio->title }}</a></h3>
+                            <p class="card-text">{!! Str::limit(strip_tags($portofolio->description), 100, '...') !!}
+                            </p>
+                            <div class="meta">
+                                <span>by <a href="#">{{ $portofolio->user->name }}</a></span>
+                                <span>on {{ \Carbon\Carbon::parse($portofolio->created_at)->format('M d, Y') }}</span>
                             </div>
                         </div>
-                        @empty
-                        <div class="col-12">
-                            <h3>Not Found</h3>
-                        </div>
-                        @endforelse
-                    </div>
-
-                    <div class="m-4 text-center">
-                        {{ $portofolios->links() }}
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-lg-4">
-                <!-- Widget Section -->
-                <div class="widget-section">
-                    <!-- Include your left side widget content here -->
-                    <x-widget-show-portofolio-front />
-                </div>
-            </div> --}}
+            @empty
+            <div class="col">
+                <h3>Not Found</h3>
+            </div>
+            @endforelse
+        </div>
+
+        <div class="m-4 text-center">
+            {{ $portofolios->links() }}
         </div>
     </div>
 
@@ -176,11 +149,12 @@
             } else {
                 html = '<div class="col-12"><h3>No Portfolios Found</h3></div>';
             }
-            $('.portofolio-container').html(html);
+            $('.row.g-4').html(html); // Update the HTML content of the portfolio container
         }
 
         function buildPortofolioHtml(portofolio) {
-            return '<div class="portofolio-item col-12 col-sm-6 col-md-0 mb-5">' +
+            return '<div class="col-12 col-sm-6 col-md-4 col-lg-4">' +
+                '<div class="portofolio-item bg-white border-radius-xl p-2 m-3">' +
                 '<div class="post-entry">' +
                 '<a href="/portofolio/' + portofolio.slug + '" class="post-thumbnail">' +
                 '<img src="/storage/back/img/portofolio/' + portofolio.img + '" alt="Image" class="img-fluid"></a>' +
@@ -190,7 +164,7 @@
                 '<div class="meta">' +
                 '<span>by <a href="#">' + portofolio.user.name + '</a></span>' +
                 '<span>on ' + portofolio.published + '</span>' +
-                '</div></div></div></div>';
+                '</div></div></div></div></div>';
         }
     });
     </script>
