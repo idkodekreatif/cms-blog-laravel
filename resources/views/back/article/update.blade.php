@@ -1,4 +1,4 @@
-<x-apps-layouts title="{{ isset($article->title) ? 'Kode Kreatif | ' . $article->title : 'Kode Kreatif | show' }}">
+<x-apps-layouts title="{{ isset($article->title) ? 'Code Creative | ' . $article->title : 'Code Creative | show' }}">
     @push('styles')
     @endpush
     <!-- End Navbar -->
@@ -70,10 +70,10 @@
                                     <label for="image" class="form-label">Image Preview</label>
                                     <br>
                                     @if ($article->img)
-                                    <a href="{{ asset('storage/back/img/' . $article->img) }}" target="_blank"
+                                    <a href="{{ asset('storage/back/img/articles/' . $article->img) }}" target="_blank"
                                         rel="noopener noopener">
-                                        <img src="{{ asset('storage/back/img/' . $article->img) }}" width="100%"
-                                            alt="{{ $article->img }}">
+                                        <img src="{{ asset('storage/back/img/articles/' . $article->img) }}"
+                                            width="100%" alt="{{ $article->img }}">
                                     </a>
                                     @else
                                     No image available
@@ -115,10 +115,10 @@
         <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
         <script>
             var options = {
-                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                        filebrowserImageBrowseUrl: '/admin/laravel-filemanager?type=Images',
+                        filebrowserImageUploadUrl: '/admin/laravel-filemanager/upload?type=Images&_token=',
+                        filebrowserBrowseUrl: '/admin/laravel-filemanager?type=Files',
+                        filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files&_token=',
                         clipboard_handleImage: false,
                     }
 

@@ -26,7 +26,8 @@
                     @foreach ($categories_posts as $category)
                     <li>
                         <span class="badge rounded-pill custom-border">
-                            <a href="{{ url('c/'. $category->slug) }}" class="text-primary">{{ $category->name }} ({{
+                            <a href="{{ url('category/'. $category->slug) }}" class="text-primary">{{ $category->name }}
+                                ({{
                                 $category->articles_count }})</a>
                         </span>
                     </li>
@@ -49,7 +50,8 @@
                     @foreach ($popular_article as $article)
                     <li>
                         <span class="badge rounded-pill custom-border">
-                            <a href="{{ url('p/'. $article->slug) }}">{{ Str::limit(strip_tags($article->title), 35,
+                            <a href="{{ url('article/'. $article->slug) }}">{{ Str::limit(strip_tags($article->title),
+                                35,
                                 '...') }}</a>
                         </span>
                     </li>

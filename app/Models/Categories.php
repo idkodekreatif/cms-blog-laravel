@@ -21,4 +21,14 @@ class Categories extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    /**
+     * Get all of the articles for the Portofolios
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function portofolios(): HasMany
+    {
+        return $this->hasMany(Portofolio::class);
+    }
 }

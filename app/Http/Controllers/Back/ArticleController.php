@@ -89,7 +89,7 @@ class ArticleController extends Controller
             if ($request->hasFile('img')) {
                 $file = $request->file('img');
                 $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/back/img', $fileName);
+                $file->storeAs('public/back/img/articles', $fileName);
 
                 $data['img'] = $fileName;
             }
@@ -139,11 +139,11 @@ class ArticleController extends Controller
 
             if ($request->hasFile('img')) {
                 // Unlink the old image file
-                Storage::delete('public/back/img/' . $article->img);
+                Storage::delete('public/back/img/articles/' . $article->img);
 
                 $file = $request->file('img');
                 $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/back/img', $fileName);
+                $file->storeAs('public/back/img/articles/', $fileName);
 
                 $data['img'] = $fileName;
             }
@@ -174,16 +174,18 @@ class ArticleController extends Controller
                 $imageName = $article->img;
 
                 // Delete the image file
-                Storage::delete('public/back/img/' . $imageName);
+                Storage::delete('public/back/img/articles/' . $imageName);
             }
 
             // Delete the article
             $article->delete();
 
-            return redirect()->route('articles.index')->with('success', 'Article deleted successfully.');
+            toast('Portofolio deleted successfully.', 'success');
+            return redirect()->route('articles.index');
         } catch (\Exception $e) {
             // Handle other exceptions, log them, or return an appropriate response
-            return redirect()->route('articles.index')->with('error', 'Error deleting article.');
+            alert()->error('Error', 'Error deleting portofolio.');
+            return redirect()->route('articles.index');
         }
     }
 }

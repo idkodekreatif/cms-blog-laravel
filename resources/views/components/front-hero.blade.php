@@ -6,9 +6,7 @@
                     <h1 class="heading" data-aos="fade-up">
                         Logic and the Art of Harmonious Collaboration.
                     </h1>
-                    <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                        vulputate velit imperdiet
-                        dolor tempor tristique.</p>
+                    <p class="mb-4">Digital Transformation for Your Future</p>
                     <form action="{{ route('article_search') }}" method="POST"
                         class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
                         data-aos-delay="200">
