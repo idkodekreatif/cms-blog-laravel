@@ -1,4 +1,4 @@
-<x-apps-layouts title="{{ isset($article->title) ? 'Kode Kreatif | ' . $article->title : 'Kode Kreatif | show' }}">
+<x-apps-layouts title="{{ isset($article->title) ? 'Code Creative | ' . $article->title : 'Code Creative | show' }}">
     @push('styles')
     @endpush
     <div class="container-fluid py-4">
@@ -41,10 +41,10 @@
                                 <label for="image" class="form-label">Image</label>
                                 <div class="position-relative" style="width: 20rem;">
                                     @if ($article->img)
-                                    <a href="{{ asset('storage/back/img/' . $article->img) }}" target="_blank"
+                                    <a href="{{ asset('storage/back/img/articles/' . $article->img) }}" target="_blank"
                                         rel="noopener noopener">
-                                        <img src="{{ asset('storage/back/img/' . $article->img) }}" width="100%"
-                                            alt="{{ $article->img }}">
+                                        <img src="{{ asset('storage/back/img/articles/' . $article->img) }}"
+                                            width="100%" alt="{{ $article->img }}">
                                     </a>
                                     @else
                                     No image available

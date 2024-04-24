@@ -5,7 +5,7 @@
                 <div class="copyright text-center text-sm text-muted text-lg-start">
                     © <script>
                         document.write(new Date().getFullYear())
-                    </script> Kode Kreatif&trade;.
+                    </script> Code Creative&trade;.
                     All Rights Reserved.
                 </div>
             </div>

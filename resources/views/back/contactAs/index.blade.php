@@ -1,4 +1,4 @@
-<x-apps-layouts title="Kode Kreatif | Contact As">
+<x-apps-layouts title="Code Creative | Contact As">
     @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
         rel="stylesheet" />

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Kode Kreatif">
+    <meta name="author" content="Code Creative">
     <!-- <link rel="shortcut icon" href="favicon.png"> -->
 
     <meta name="description" content="" />
@@ -50,6 +50,7 @@
     <script src="{{ asset('assets/front/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/front/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('assets/front/js/custom.js') }}"></script>
+    @stack('scripts')
 </body>
 
 

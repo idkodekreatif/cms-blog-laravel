@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                    <h6>Categories table</h6>
+                    <h6>Articles table</h6>
                 </div>
                 <div class="col-6 text-end">
                     <!-- Button trigger modal -->

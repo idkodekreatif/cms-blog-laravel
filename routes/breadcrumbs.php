@@ -12,6 +12,42 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('dashboard.index'));
 });
 
+// Portofolio
+Breadcrumbs::for('portofolio.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Portofolio', route('portofolio.index'));
+});
+
+Breadcrumbs::for('portofolio.create', function ($trail) {
+    $trail->push('Portofolio', route('portofolio.index'));
+    $trail->push('Add New Portofolio', route('portofolio.create'));
+});
+
+Breadcrumbs::for('portofolio.show', function ($trail) {
+    $portofolioId = app('request')->route()->parameter('article');
+
+    if ($portofolioId) {
+        $article = Article::find($portofolioId);
+
+        if ($article) {
+            $trail->push('Portofolio', route('portofolio.index'));
+            $trail->push('show : (' . $article->title . ')', route('portofolio.show', $portofolioId));
+        }
+    }
+});
+
+Breadcrumbs::for('portofolio.edit', function ($trail) {
+    $portofolioId = app('request')->route()->parameter('article');
+
+    if ($portofolioId) {
+        $article = Article::find($portofolioId);
+
+        if ($article) {
+            $trail->push('Portofolio', route('portofolio.index'));
+            $trail->push('Edit : (' . $article->title . ')', route('portofolio.edit', $portofolioId));
+        }
+    }
+});
+
 // Articles
 Breadcrumbs::for('articles.index', function (BreadcrumbTrail $trail) {
     $trail->push('Articles', route('articles.index'));

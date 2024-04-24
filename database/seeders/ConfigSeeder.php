@@ -24,7 +24,7 @@ class ConfigSeeder extends Seeder
             ],
             [
                 'name' => 'blogname',
-                'value' => 'kode kreatif'
+                'value' => 'Code Creative'
             ],
             [
                 'name' => 'title',
